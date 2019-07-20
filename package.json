@@ -1,0 +1,25 @@
+{
+  "name": "car_journal",
+  "version": "0.0.0",
+  "description": "Приложения для ведения журнала автомобиля.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "parcel ./index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kymec/car_journal.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kymec/car_journal/issues"
+  },
+  "homepage": "https://github.com/kymec/car_journal#readme",
+  "dependencies": {
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-router-dom": "^5.0.1"
+  }
+}
