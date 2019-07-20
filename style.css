@@ -1,0 +1,19 @@
+body {
+    background-color: beige;
+}
+#root {
+    margin: 0 auto;
+    max-width: 600px;
+}
+#menu {
+    text-align: center;
+    margin: 10px 10px;
+}
+#addcar {
+    display: flex;
+    flex-direction: column;
+}
+label {
+    display: flex;
+    justify-content: space-between;
+}
