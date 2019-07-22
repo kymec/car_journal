@@ -9,11 +9,14 @@ body {
     text-align: center;
     margin: 10px 10px;
 }
-#addcar {
+#addcar, #additem {
     display: flex;
     flex-direction: column;
+    text-align: center;
 }
 label {
     display: flex;
     justify-content: space-between;
+    margin: 10px 10px;
 }
+

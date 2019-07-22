@@ -7,11 +7,39 @@ export default class OtherCosts extends React.Component {
     render() {
         return (
             <div>
-                <InputText type="date" text="Дата" name="date" />
-                <SelectCategory text="Категория растрат" name="category" />
-                <InputText text="Пробег (км.)" placeholder="5000" name="mileage" />
-                <InputText text="Стоимость (грн.)" placeholder="30" name="cost" />
-                <InputText text="Комментарий" name="comment" />
+                <InputText 
+                    type="date" 
+                    text="Дата" 
+                    name="date" 
+                    getState={(state) => {this.props.getState(state)}} 
+                />
+                <SelectCategory 
+                    text="Категория растрат" 
+                    name="category" 
+                />
+                <InputText 
+                    type="number"
+                    min="0"
+                    max="10000000"
+                    text="Пробег (км.)" 
+                    placeholder="5000" 
+                    name="mileage"
+                    getState={(state) => {this.props.getState(state)}} 
+                />
+                <InputText 
+                    type="number"
+                    min="0"
+                    max="10000000"
+                    text="Стоимость (грн.)" 
+                    placeholder="30" 
+                    name="cost" 
+                    getState={(state) => {this.props.getState(state)}} 
+                />
+                <InputText 
+                    text="Комментарий" 
+                    name="comment" 
+                    getState={(state) => {this.props.getState(state)}} 
+                />
             </div>
         );
     }

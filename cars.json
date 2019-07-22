@@ -12,7 +12,7 @@
                 {
                     "type": "refueling",
                     "date": "2019-07-15/16:54",
-                    "mileage": 174800,                    
+                    "mileage-item": 174800,                    
                     "fuel-remain": 0.3,
                     "liters": 20,
                     "cost-per-liter": 30.99,
@@ -23,7 +23,7 @@
                     "type": "other-costs",
                     "date": "2019-07-15/18:55",
                     "category": "мойка",
-                    "mileage": 174805,
+                    "mileage-item": 174805,
                     "cost": 120,
                     "comment": "мойка кузова и салона"
                 },
@@ -31,7 +31,7 @@
                     "type": "other-costs",
                     "date": "2019-07-16/12:55",
                     "category": "СТО",
-                    "mileage": 175000,
+                    "mileage-item": 175000,
                     "cost": 445,
                     "comment": "замена втулки стабилизатора"
                 }
@@ -49,7 +49,7 @@
                 {
                     "type": "refueling",
                     "date": "2019-07-10/14:59",
-                    "mileage": 98000,                    
+                    "mileage-item": 98000,                    
                     "fuel-remain": 0.1,
                     "liters": 30,
                     "cost-per-liter": 31.99,

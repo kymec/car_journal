@@ -7,21 +7,25 @@ export default class AddItem extends React.Component {
     constructor() {
         super();
         this.state = {
-            type: "test",
+            type: "",
         }
     }
     chooseType() {
         if (this.state.type === "refueling") {
             return (
-                <Refueling />
+                <Refueling
+                    getState={(state) => {this.setState(state)}}
+                />
             );
         } else if (this.state.type === "other-costs"){
             return (
-                <OtherCosts />
+                <OtherCosts 
+                    getState={(state) => {this.setState(state)}}
+                />
             );
         } else {
             return (
-                <div>Error chooseType</div>
+                <div>Выберите тип растрат</div>
             );
         }        
     }
@@ -34,7 +38,7 @@ export default class AddItem extends React.Component {
                 <InputRadio name="type" click={() => this.changeState('refueling')} text="Заправка"/>
                 <InputRadio name="type" click={() => this.changeState('other-costs')} text="Другие траты"/>
                 {this.chooseType()}
-                <button>Сохранить</button>
+                <button onClick={() => console.log(this.state)}>Сохранить</button>
             </div>
         );
     }
