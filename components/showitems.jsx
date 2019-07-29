@@ -21,13 +21,15 @@ export default class ShowItems extends React.Component{
         this.RefBeforeLastCost = 0;
         this.RefBeforeLastMileage = 0;
         this.category={};
-        this.state = {[`${categoryList[0]}`]: true};
-        this.state = {[`${categoryList[1]}`]: true};
-        this.state = {[`${categoryList[2]}`]: true};
-        this.state = {[`${categoryList[3]}`]: true};
-        this.state = {[`${categoryList[4]}`]: true};
-        this.state = {[`${categoryList[5]}`]: true};
-        this.state = {[`${categoryList[6]}`]: true};
+        this.state = {
+            'Запчасти': false,
+            'Мойка': false,
+            'Услуги СТО': false,
+            'Аксесуары': false,
+            'Штраф': false,
+            'Парковка': false,
+            'Страховка': false,
+        }
         
     }
     showRow(obj, car, index) {
@@ -62,19 +64,10 @@ export default class ShowItems extends React.Component{
                             <button onClick={() => this.props.removeItem(index)}>Удалить</button>
                         </div>
                     )
-                } else if (obj.type === 'other-costs' && !this.state[obj.category]) {
+                } else if (obj.type === 'other-costs' && this.state[obj.category]) {
                     this.sumOth += +obj.cost;
                     return (
                         <div>
-                            {
-                                categoryList.map((item) => (
-                                    <InputCategory 
-                                    key={item}
-                                    click={() => (this.category[item] = !this.category[item])}
-                                    name={item}
-                                    />
-                                ))
-                            }
                             <div className="reportList">
                                 <div>Дата: {obj.date}</div>
                                 <div>Пробег: {obj.mileage} км</div>
@@ -139,7 +132,6 @@ export default class ShowItems extends React.Component{
         }
     }
     render() {
-        console.log(this.state);
         this.sumRef = 0;
         this.sumOth = 0;
         this.RefQnt = 0;
@@ -157,6 +149,15 @@ export default class ShowItems extends React.Component{
         return (
             <div>                
                 <div>{this.props.header}</div>
+                {   this.props.header === 'Другие расходы' ?                    
+                    categoryList.map((item) => (
+                        <InputCategory 
+                        key={item}
+                        click={() => (this.setState({[item]: !this.state[item]}))}
+                        name={item}
+                        />
+                    )) : <div />
+                }
                 {this.props.items.map((item, index) => (                   
                     <div 
                         key={index}
