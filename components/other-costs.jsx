@@ -1,6 +1,6 @@
 import React from 'react';
-import InputText from './inputtext';
-import SelectCategory from './select-category';
+import InputText from '../components/inputtext';
+import SelectCategory from '../components/select-category';
 
 
 export default class OtherCosts extends React.Component {
@@ -16,6 +16,7 @@ export default class OtherCosts extends React.Component {
                 <SelectCategory 
                     text="Категория растрат" 
                     name="category" 
+                    getState={(state) => {this.props.getState(state)}}
                 />
                 <InputText 
                     type="number"

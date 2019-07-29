@@ -1,5 +1,5 @@
 import React from 'react';
-import InputText from './inputtext';
+import InputText from '../components/inputtext';
 
 
 export default class Refueling extends React.Component {
