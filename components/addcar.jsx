@@ -1,5 +1,6 @@
+
 import React from 'react';
-import InputText from './inputtext';
+import InputText from '../components/inputtext';
 
 
 export default class AddCar extends React.Component {
@@ -60,7 +61,7 @@ export default class AddCar extends React.Component {
                     placeholder="43" 
                     getState={(state) => {this.setState(state)}}
                 />
-                <button onClick={() => console.log(this.state)}>Сохранить</button>
+                <button onClick={() => this.props.add(this.state)}>Сохранить</button>
             </div>
         );
     }

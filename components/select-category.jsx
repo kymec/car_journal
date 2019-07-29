@@ -5,7 +5,11 @@ export default class SelectCategory extends React.Component{
         return (
             <label>
                 {this.props.text}
-                <select name={this.props.name}>
+                <select 
+                    name={this.props.name} 
+                    onChange={(event) => this.props.getState({'category': event.target.value})}
+                >
+                    <option hidden>Выберите категорию</option>
                     <option>Запчасти</option>
                     <option>Мойка</option>
                     <option>Услуги СТО</option>
