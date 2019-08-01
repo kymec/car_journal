@@ -11,12 +11,23 @@ import Report from './components/report';
 import { connect } from 'react-redux';
 import * as Constants from './actions';
 
+Date.prototype.yyyymmdd = function() {
+    let mm = this.getMonth() + 1; // getMonth() is zero-based
+    let dd = this.getDate();
+  
+    return [this.getFullYear(),
+            (mm>9 ? '' : '0') + mm,
+            (dd>9 ? '' : '0') + dd
+           ].join('-');
+  };
+
 class MainPage extends React.Component {
     componentDidMount() {
         this.props.getList();
         this.props.getItem();
     }
-    render() {        
+
+    render() {
         return (           
             <Router>
                 <Route path="/" component={Choose} /><br />          

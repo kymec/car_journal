@@ -11,8 +11,16 @@ export default class AddItem extends React.Component {
             type: "",
         }
     }
-    filterState(state) {     
-        console.log(state);   
+    componentWillReceiveProps(nextProps) {
+        if (this.props.cars != nextProps.cars) {
+            this.setState({
+                cars: nextProps.cars,
+                current: nextProps.cars[0].name,
+                defaultMileage: nextProps.cars[0].mileage,
+            });
+        }
+    }
+    filterState(state) {  
         let newState;
         if (state.type === 'refueling') {
             newState = {
@@ -23,8 +31,8 @@ export default class AddItem extends React.Component {
                 'cost-per-liter': state['cost-per-liter'] || '',
                 'oil-station': state['oil-station'] || '',
                 'comment': state.comment || '',
-                'current': state.current || this.props.cars[0].name || '',
                 'type': state.type,
+                'current': state.current,
             };
         } else if (state.type === 'other-costs') {
             newState = {
@@ -33,8 +41,8 @@ export default class AddItem extends React.Component {
                 'cost': state.cost || '',
                 'category': state.category || '',
                 'comment': state.comment || '',
-                'current': state.current || this.props.cars[0].name || '',
                 'type': state.type,
+                'current': state.current,
             };
         }
         return newState;
@@ -44,12 +52,14 @@ export default class AddItem extends React.Component {
             return (
                 <Refueling
                     getState={(state) => {this.setState(state)}}
+                    defaultMileage={this.state.defaultMileage}
                 />
             );
         } else if (this.state.type === "other-costs"){
             return (
                 <OtherCosts 
                     getState={(state) => {this.setState(state)}}
+                    defaultMileage={this.state.defaultMileage}
                 />
             );
         } else {
@@ -61,18 +71,16 @@ export default class AddItem extends React.Component {
     changeState(type) {
         this.setState({'type': type});    
     }
-    render() {        
+    render() {
         return (
             <div id="additem">
                 <SelectCar 
                     car={this.props.cars}
-                    remove={
-                        () => 
-                            this.state.current ? 
-                            this.props.remove(this.state.current) : 
-                            this.props.remove(this.props.cars[0].name)
-                        }
-                    current={(current) => this.setState({current: current})}
+                    remove={() => this.props.remove(this.state.current)}
+                    current={(current) => {
+                        this.currentIndex = this.props.cars.map((obj) => obj.name).indexOf(current);                        
+                        this.setState({current: current, defaultMileage: this.props.cars[this.currentIndex].mileage,});
+                        }}
                 />                             
                 <InputRadio 
                     name="type" 

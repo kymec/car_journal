@@ -11,7 +11,8 @@ export default class OtherCosts extends React.Component {
                     type="date" 
                     text="Дата" 
                     name="date" 
-                    getState={(state) => {this.props.getState(state)}} 
+                    getState={(state) => {this.props.getState(state)}}
+                    defaultValue={new Date().yyyymmdd()}
                 />
                 <SelectCategory 
                     text="Категория растрат" 
@@ -25,7 +26,8 @@ export default class OtherCosts extends React.Component {
                     text="Пробег (км.)" 
                     placeholder="5000" 
                     name="mileage"
-                    getState={(state) => {this.props.getState(state)}} 
+                    getState={(state) => {this.props.getState(state)}}
+                    defaultValue={this.props.defaultMileage}
                 />
                 <InputText 
                     type="number"

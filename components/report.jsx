@@ -11,31 +11,40 @@ export default class Report extends React.Component {
         };
         
     }
-    
+    componentWillReceiveProps(nextProps) {
+        if (this.props.cars != nextProps.cars) {
+            this.setState({
+                cars: nextProps.cars,
+                current: nextProps.cars[0].name,
+            });
+        }
+    }
 
     render() {
         return (
             <div>
                 <SelectCar 
                     car={this.props.cars}
-                    remove={
-                        () => 
-                            this.state.current ? 
-                            this.props.remove(this.state.current) : 
-                            this.props.remove(this.props.cars[0].name)
-                        }
+                    remove={() => this.props.remove(this.state.current)}
                     current={(current) => this.setState({current: current})}
                 /> 
                 <div>
                     <div>период с:</div>
-                    <input type='date' onChange={(event) => this.setState({from: event.target.value})}></input>
+                    <input 
+                        type='date' 
+                        onChange={(event) => this.setState({from: event.target.value})}
+                    ></input>
                     <div>по:</div>
-                    <input type='date' onChange={(event) => this.setState({to: event.target.value})}></input>
+                    <input 
+                        type='date' 
+                        onChange={(event) => this.setState({to: event.target.value})}
+                        defaultValue={new Date().yyyymmdd()}
+                    ></input>
                 </div>
                 <div>
                     <ShowItems 
                         items={this.props.items}
-                        current={ this.state.current ? this.state.current : this.props.cars[0] ? this.props.cars[0].name : '' }
+                        current={ this.state.current }
                         filter={{
                             type: 'refueling',
                             from: this.state.from,
@@ -46,7 +55,7 @@ export default class Report extends React.Component {
                     />
                     <ShowItems 
                         items={this.props.items}
-                        current={ this.state.current ? this.state.current : this.props.cars[0] ? this.props.cars[0].name : '' }
+                        current={ this.state.current }
                         filter={{
                             type: 'other-costs',
                             from: this.state.from,

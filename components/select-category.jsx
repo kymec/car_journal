@@ -1,6 +1,18 @@
 import React from 'react';
+import categoryList from '../categorylist';
 
 export default class SelectCategory extends React.Component{
+    constructor() {
+        super();
+        this.state = this.getCategoryList();
+    }
+    getCategoryList() {
+        let obj = {};
+        for (let i = 0; i < categoryList.length; i += 1) {
+            obj[categoryList[i]] = true;
+        }        
+        return obj;
+    }
     render() {
         return (
             <label>
@@ -10,13 +22,9 @@ export default class SelectCategory extends React.Component{
                     onChange={(event) => this.props.getState({'category': event.target.value})}
                 >
                     <option hidden>Выберите категорию</option>
-                    <option>Запчасти</option>
-                    <option>Мойка</option>
-                    <option>Услуги СТО</option>
-                    <option>Аксесуары</option>
-                    <option>Штраф</option>
-                    <option>Парковка</option>
-                    <option>Страховка</option>
+                    {categoryList.map((item) => (
+                        <option key={item}>{item}</option>
+                    ))}
                 </select>
             </label>
         );
