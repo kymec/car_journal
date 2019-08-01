@@ -4,6 +4,7 @@ import itemReducer from './reducers/items';
 import loggerMiddleware from './middlewares/logger';
 import carsMiddleware from './middlewares/car_storage';
 import itemsMiddleware from './middlewares/item_storage';
+import carMileage from './middlewares/car_mileage';
 
 
 export const Store = createStore(
@@ -15,6 +16,7 @@ export const Store = createStore(
         loggerMiddleware, 
         carsMiddleware,
         itemsMiddleware,
+        carMileage,
     ),
 );
 

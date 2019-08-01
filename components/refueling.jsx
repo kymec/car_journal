@@ -2,15 +2,18 @@ import React from 'react';
 import InputText from '../components/inputtext';
 
 
+
 export default class Refueling extends React.Component {
-    render() {
+    
+    render() {        
         return (
             <div>
                 <InputText 
                     type="date" 
                     text="Дата" 
                     name="date" 
-                    getState={(state) => {this.props.getState(state)}} 
+                    getState={(state) => {this.props.getState(state)}}
+                    defaultValue={new Date().yyyymmdd()}
                 />
                 <InputText
                     type="number"
@@ -19,7 +22,8 @@ export default class Refueling extends React.Component {
                     text="Пробег (км.)" 
                     placeholder="5000"
                     name="mileage"
-                    getState={(state) => {this.props.getState(state)}} 
+                    getState={(state) => {this.props.getState(state)}}
+                    defaultValue={this.props.defaultMileage}
                 />
                 <InputText 
                     type="range" 
@@ -27,6 +31,7 @@ export default class Refueling extends React.Component {
                     text="Остаток топлива в баке (%)"  
                     name="fuel-remain" 
                     getState={(state) => {this.props.getState(state)}} 
+                    defaultValue='0'
                 />
                 <InputText
                     type="number"

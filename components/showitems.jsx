@@ -3,8 +3,8 @@ import InputCategory from '../components/inputcategory';
 import categoryList from '../categorylist';
 
 export default class ShowItems extends React.Component{
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {}
         this.sumRef = 0;
         this.sumOth = 0;
@@ -21,16 +21,15 @@ export default class ShowItems extends React.Component{
         this.RefBeforeLastCost = 0;
         this.RefBeforeLastMileage = 0;
         this.category={};
-        this.state = {
-            'Запчасти': false,
-            'Мойка': false,
-            'Услуги СТО': false,
-            'Аксесуары': false,
-            'Штраф': false,
-            'Парковка': false,
-            'Страховка': false,
-        }
+        this.state = this.getCategoryList()
         
+    }
+    getCategoryList() {
+        let obj = {};
+        for (let i = 0; i < categoryList.length; i += 1) {
+            obj[categoryList[i]] = true;
+        }        
+        return obj;
     }
     showRow(obj, car, index) {
         if (

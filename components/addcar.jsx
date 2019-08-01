@@ -4,7 +4,7 @@ import InputText from '../components/inputtext';
 
 
 export default class AddCar extends React.Component {
-    render() {        
+    render() {     
         return (
             <div id="addcar">
                 <InputText 
@@ -31,7 +31,7 @@ export default class AddCar extends React.Component {
                     max="2025"
                     name="year" 
                     text="Год выпуска автомобиля" 
-                    placeholder="2019" 
+                    defaultValue={new Date().getFullYear()}
                     getState={(state) => {this.setState(state)}}
                 />
                 <InputText 
