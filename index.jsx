@@ -37,6 +37,7 @@ class MainPage extends React.Component {
                         render={(props) => 
                             <AddCar {...props} 
                                 add={(car) => this.props.addcar(car)} 
+                                cars={this.props.cars}
                             />}
                     />
                     <Route 
