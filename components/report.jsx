@@ -3,19 +3,20 @@ import SelectCar from '../components/selectcar';
 import ShowItems from '../components/showitems';
 
 export default class Report extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             from: "1950-01-01",
             to: "2050-01-01",
-        };
-        
+            cars: props.cars[0] ? props.cars : '',
+            current: props.cars[0] ? props.cars[0].name : '',
+        };        
     }
     componentWillReceiveProps(nextProps) {
         if (this.props.cars != nextProps.cars) {
             this.setState({
                 cars: nextProps.cars,
-                current: nextProps.cars[0].name,
+                current: nextProps.cars[0] ? nextProps.cars[0].name : '',
             });
         }
     }

@@ -9,14 +9,17 @@ export default class AddItem extends React.Component {
         super(props);
         this.state = {
             type: "",
-        }
+            cars: this.props.cars,
+            current: this.props.cars[0] ? this.props.cars[0].name : '',
+            defaultMileage: this.props.cars[0] ? this.props.cars[0].mileage : '',
+        }        
     }
     componentWillReceiveProps(nextProps) {
         if (this.props.cars != nextProps.cars) {
             this.setState({
                 cars: nextProps.cars,
-                current: nextProps.cars[0].name,
-                defaultMileage: nextProps.cars[0].mileage,
+                current: nextProps.cars[0] ? nextProps.cars[0].name : '',
+                defaultMileage: nextProps.cars[0] ? nextProps.cars[0] : '',
             });
         }
     }
