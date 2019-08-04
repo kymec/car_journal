@@ -1,31 +1,45 @@
-
 import React from 'react';
 import InputText from '../components/inputtext';
 
 
-export default class AddCar extends React.Component {
-    constructor() {
-        super();
-        this.state = {
-            buttonState: true,
+export default class EditCar extends React.Component {
+    constructor(props) {
+        super(props);
+        if(props.cars[0]) {
+            props.cars.map((car) => {if(car.name === this.props.current){this.currentCar = car}});
+            this.state = {
+                buttonState: false,
+                'brand': this.currentCar.brand,
+                'engine-volume': this.currentCar['engine-volume'],
+                'fuel-tank': this.currentCar['fuel-tank'],
+                'mileage': this.currentCar.mileage,
+                'model': this.currentCar.model,
+                'name': this.currentCar.name,
+                'year': this.currentCar.year,
+                current: '',
+            }
         }
+        this.state       
         this.inputvalue = {};
     }
-    
+    componentWillReceiveProps(nextProps) {
+        if (this.props.cars != nextProps.cars) {
+            this.currentCar = nextProps.cars[0];
+            this.setState({
+                buttonState: false,
+                'brand': this.currentCar.brand,
+                'engine-volume': this.currentCar['engine-volume'],
+                'fuel-tank': this.currentCar['fuel-tank'],
+                'mileage': this.currentCar.mileage,
+                'model': this.currentCar.model,
+                'name': this.currentCar.name,
+                'year': this.currentCar.year,
+                current: '',
+            })
+        }
+    }
     checkInput(state) {
         this.inputvalue = {...this.inputvalue, ...state};
-        this.setState({
-            error: '',
-        });
-        this.inputvalue.error = '';
-        this.props.cars.map((value) => {
-            if(value.name === this.inputvalue.name) {
-                this.setState({
-                    error: 'такое имя автомобиля уже существует',
-                });
-                this.inputvalue.error = 'такое имя автомобиля уже существует';
-            }
-        });
         if(
             this.inputvalue.name &&
             this.inputvalue.brand &&
@@ -33,8 +47,7 @@ export default class AddCar extends React.Component {
             this.inputvalue.year &&
             this.inputvalue.mileage &&
             this.inputvalue['engine-volume'] &&
-            this.inputvalue['fuel-tank'] &&
-            this.inputvalue.error === ''
+            this.inputvalue['fuel-tank']
         ) {
             this.setState({buttonState: false});
         } else {
@@ -44,22 +57,22 @@ export default class AddCar extends React.Component {
     }
     render() {
         return (
-            <div id="addcar">
-                <div id="error">{this.state.error}</div>
+            <div id="editcar">
                 <InputText
                     type="text"
                     name="name" 
+                    disabled
                     text="Уникальное имя автомобиля" 
                     placeholder="моя машина"
                     getState={(state) => {this.setState(state); this.checkInput(state)}}
-                    defaultValue={this.state.name || ''}/>
+                    defaultValue={this.state ? this.state.name : ''}/>
                 <InputText
                     type="text"
                     name="brand" 
                     text="Марка автомобиля" 
                     placeholder="Honda"
                     getState={(state) => {this.setState(state); this.checkInput(state)}}
-                    defaultValue={this.state.brand || ''}
+                    defaultValue={this.state ? this.state.brand : ''}
                 />
                 <InputText 
                     type="text"
@@ -67,7 +80,7 @@ export default class AddCar extends React.Component {
                     text="Модель автомобиля" 
                     placeholder="Civic" 
                     getState={(state) => {this.setState(state); this.checkInput(state)}}
-                    defaultValue={this.state.model || ''}
+                    defaultValue={this.state ? this.state.model : ''}
                 />
                 <InputText 
                     type="number"
@@ -75,7 +88,7 @@ export default class AddCar extends React.Component {
                     max="2025"
                     name="year" 
                     text="Год выпуска автомобиля" 
-                    defaultValue={new Date().getFullYear()}
+                    defaultValue={this.state ? this.state.year : ''}
                     getState={(state) => {this.setState(state); this.checkInput(state)}}
                 />
                 <InputText 
@@ -86,7 +99,7 @@ export default class AddCar extends React.Component {
                     text="Пробег автомобиля (км.)"  
                     placeholder="5000" 
                     getState={(state) => {this.setState(state); this.checkInput(state)}}
-                    defaultValue={this.state.mileage || 0}
+                    defaultValue={this.state ? this.state.mileage : ''}
                 />
                 <InputText 
                     type="number"
@@ -96,7 +109,7 @@ export default class AddCar extends React.Component {
                     text="Обьём двигателя автомобиля (куб.см.)" 
                     placeholder="1800" 
                     getState={(state) => {this.setState(state); this.checkInput(state)}}
-                    defaultValue={this.state['engine-volume'] || 0}
+                    defaultValue={this.state ? this.state['engine-volume'] : ''}
                 />
                 <InputText 
                     type="number"
@@ -106,11 +119,11 @@ export default class AddCar extends React.Component {
                     text="Обьём бака автомобиля (литров)" 
                     placeholder="43" 
                     getState={(state) => {this.setState(state); this.checkInput(state)}}
-                    defaultValue={this.state['fuel-tank']}
+                    defaultValue={this.state ? this.state['fuel-tank'] : ''}
                 />
                 <button 
                     onClick={() => {
-                        this.props.add({
+                        this.props.edit({
                             name: this.state.name,
                             brand: this.state.brand,
                             model: this.state.model,
@@ -119,19 +132,8 @@ export default class AddCar extends React.Component {
                             year: this.state.year,
                             mileage: this.state.mileage,
                         });
-                        /*Очистка полей
-                        this.setState({
-                            'brand': "",
-                            'buttonState': true,
-                            'engine-volume': '',
-                            'fuel-tank': '',
-                            'mileage': '',
-                            'model': '',
-                            'name': '',
-                            'year': '',
-                        });*/
                     }}
-                    disabled={this.state.buttonState}
+                    disabled={this.state ? this.state.buttonState : false}
                 >Сохранить</button>
             </div>
         );

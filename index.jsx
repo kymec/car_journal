@@ -6,10 +6,13 @@ import { Store } from './store';
 import './style.css';
 import Choose from './components/choose';
 import AddCar from './components/addcar';
+import EditCar from './components/editcar';
 import AddItem from './components/additem';
 import Report from './components/report';
+import SelectCar from './components/selectcar';
 import { connect } from 'react-redux';
 import * as Constants from './actions';
+import {PUBLIC_URL} from './constants';
 
 Date.prototype.yyyymmdd = function() {
     let mm = this.getMonth() + 1; // getMonth() is zero-based
@@ -21,19 +24,46 @@ Date.prototype.yyyymmdd = function() {
            ].join('-');
   };
 
+
+
 class MainPage extends React.Component {
+    constructor() {
+        super();
+        this.state = {
+            current: '',
+        }
+    }
+    componentWillReceiveProps(nextProps) {
+        if (this.props.cars != nextProps.cars) {
+            this.setState({
+                cars: nextProps.cars,
+                current: nextProps.cars[0] ? nextProps.cars[0].name : '',
+            });
+        }
+    }
     componentDidMount() {
         this.props.getList();
         this.props.getItem();
     }
-
-    render() {
-        return (           
+    render() {    
+        return (                   
             <Router>
-                <Route path="/" component={Choose} /><br />          
+                <Choose cars={this.props.cars} />                          
                 <Switch>
                     <Route 
-                        path="/addcar" 
+                        exact
+                        path={`${PUBLIC_URL}/`} 
+                        render={(props) => 
+                            <SelectCar {...props}
+                                car={this.props.cars}
+                                remove={() => this.props.remove(this.state.current)}
+                                current={(current) => {                      
+                                        this.setState({current: current});
+                                    }}
+                        /> }
+                    />
+                    <Route 
+                        path={`${PUBLIC_URL}/addcar`}
                         render={(props) => 
                             <AddCar {...props} 
                                 add={(car) => this.props.addcar(car)} 
@@ -41,7 +71,7 @@ class MainPage extends React.Component {
                             />}
                     />
                     <Route 
-                        path="/additem"
+                        path={`${PUBLIC_URL}/additem`}
                         render={(props) => 
                             <AddItem {...props} 
                                 add={(item) => this.props.additem(item)}
@@ -50,7 +80,7 @@ class MainPage extends React.Component {
                             />}
                     />
                     <Route 
-                        path="/report" 
+                        path={`${PUBLIC_URL}/report`} 
                         render={(props) => 
                             <Report {...props}
                                 cars={this.props.cars}
@@ -58,7 +88,16 @@ class MainPage extends React.Component {
                                 remove={(car) => this.props.remove(car)}                                
                                 removeItem={(item) => this.props.removeItem(item)}
                             />}
-                    />     
+                    />    
+                    <Route 
+                        path={`${PUBLIC_URL}/editcar`}
+                        render={(props) => 
+                            <EditCar {...props} 
+                                edit={(car) => this.props.editcar(car)} 
+                                cars={this.props.cars}
+                                current={this.state.current}
+                            />}
+                    /> 
                 </Switch>
             </Router>
         );
@@ -69,10 +108,10 @@ const CarsConnected = connect (
     (state) => ({ 
         cars: state.cars,
         items: state.items,
-        currentcar: state.currentcar,
     }),
     (dispatch) => ({ 
         addcar: (car) => dispatch({ type: Constants.ADD_CAR, car }),
+        editcar: (car) => dispatch({ type: Constants.EDIT_CAR, car }),
         additem: (item) => dispatch({ type: Constants.ADD_ITEM, item }),
         getList: () => dispatch({ type: Constants.GET_CAR}),
         remove: (car) => dispatch({ type: Constants.REMOVE_CAR, car }),

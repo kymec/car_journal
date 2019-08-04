@@ -9,6 +9,8 @@ export default function reducer(state, payload) {
             return state.concat(payload.car);
         case Constants.SET_CAR:
             return payload.car;
+        case Constants.EDIT_CAR:
+            return state.filter(car => car.name !== payload.car.name).concat(payload.car);
     }    
     if (state) {
         return state;
