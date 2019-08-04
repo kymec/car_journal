@@ -33,6 +33,7 @@ export default class InputText extends React.Component{
                     placeholder={this.props.placeholder}
                     onChange={this.change.bind(this)}                    
                     value={this.state.value || ''} 
+                    disabled={this.props.disabled}
                 ></input>
             </label>
         );

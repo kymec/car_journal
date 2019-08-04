@@ -1,4 +1,6 @@
 import React from 'react';
+import {NavLink} from 'react-router-dom';
+import {PUBLIC_URL} from '../constants';
 
 export default class SelectCar extends React.Component{
     
@@ -19,6 +21,7 @@ export default class SelectCar extends React.Component{
                 >
                 Remove
                 </button>
+                <NavLink to={`${PUBLIC_URL}/editcar`}>Edit car</NavLink>
             </div>
             
         );
