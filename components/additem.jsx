@@ -37,6 +37,14 @@ export default class AddItem extends React.Component {
                 'type': state.type,
                 'current': state.current,
             };
+            this.setState ({
+                'mileage': '',
+                'fuel-remain': '',
+                'liters': '',
+                'cost-per-liter': '',
+                'oil-station': '',
+                'comment': '',
+            });
         } else if (state.type === 'other-costs') {
             newState = {
                 'date': state.date || '',
