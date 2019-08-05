@@ -1,7 +1,12 @@
-body {
-    background-color: beige;
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,700&display=swap');
+
+body {    
+    background: url('./images/icons/tyre.png');
+    font-family: Open Sans;
+    font-size: 16px;    
+    background-color: rgb(214, 234, 243);
 }
-#root {
+#root {    
     margin: 0 auto;
     max-width: 600px;
 }
@@ -19,8 +24,75 @@ label {
     justify-content: space-between;
     margin: 10px 10px;
 }
+.radio {
+    display: flex;
+    justify-content: space-between;
+    width: 200px;
+    margin: 10px auto;
+}
 .reportList {
     display: flex;
     flex-direction: row;
 }
-
+input[type="text"], input[type="number"], input[type="date"], select, input[type="range"] {
+    border-radius: 8px;
+    width: 200px;
+    height: 30px;
+    border: none;
+    box-sizing:border-box;
+    color: #000000;
+    box-shadow: 4px 12px 25px rgba(71, 55, 255, 0.08);
+    padding: 0 10px 0 10px;
+    font-size: 16px;
+}
+#addcar button, #additem button, #editcar button {
+    width: 200px;
+    height: 30px;
+    border: none;
+    border-radius: 8px;
+    margin: 10px auto;
+    font-size: 16px;
+    background-color: rgb(253, 235, 153);
+}
+button:hover {
+    cursor: pointer;
+}
+#categorylist {
+    display: flex;
+    flex-direction: row;
+}
+#categorylist div {
+    text-align: center;
+    font-size: 14px;
+}
+#categorylist div input {
+    width: 80px;
+}
+#selectcar {
+    display: flex;
+    width: 300px;
+    margin: 0 auto;
+}
+#selectcar button{
+    background: none;
+    width: 30px;
+    border: none;
+    padding: 0;
+    margin: 0 20px;
+}
+#selectcar button img{
+    width: 30px;    
+}
+#selectcar button:hover{    
+    cursor: pointer;
+}
+#selectcar a img{
+    width: 30px;
+}
+#menu img{
+    height: 40px;
+    margin: 0 15px;
+}
+#error {
+    color: red;
+}
