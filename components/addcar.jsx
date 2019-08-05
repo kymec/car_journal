@@ -47,12 +47,14 @@ export default class AddCar extends React.Component {
             <div id="addcar">
                 <div id="error">{this.state.error}</div>
                 <InputText
+                    type="text"
                     name="name" 
                     text="Уникальное имя автомобиля" 
                     placeholder="моя машина"
                     getState={(state) => {this.setState(state); this.checkInput(state)}}
                     defaultValue={this.state.name || ''}/>
                 <InputText
+                    type="text"
                     name="brand" 
                     text="Марка автомобиля" 
                     placeholder="Honda"
@@ -60,6 +62,7 @@ export default class AddCar extends React.Component {
                     defaultValue={this.state.brand || ''}
                 />
                 <InputText 
+                    type="text"
                     name="model" 
                     text="Модель автомобиля" 
                     placeholder="Civic" 

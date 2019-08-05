@@ -148,15 +148,19 @@ export default class ShowItems extends React.Component{
         return (
             <div>                
                 <div>{this.props.header}</div>
-                {   this.props.header === 'Другие расходы' ?                    
-                    categoryList.map((item) => (
-                        <InputCategory 
-                        key={item}
-                        click={() => (this.setState({[item]: !this.state[item]}))}
-                        name={item}
-                        />
-                    )) : <div />
+                <div id="categorylist">
+                {   this.props.header === 'Другие расходы' ?                                     
+                        categoryList.map((item) => (
+                            <InputCategory 
+                            key={item}
+                            click={() => (this.setState({[item]: !this.state[item]}))}
+                            name={item}
+                            />                
+                        )) 
+                    :
+                    <div />
                 }
+                </div>
                 {this.props.items.map((item, index) => (                   
                     <div 
                         key={index}

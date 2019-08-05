@@ -6,13 +6,14 @@ export default class InputText extends React.Component{
         this.state = {
             value: props.defaultValue,
         };
-        this.props.getState({[this.props.name]: props.defaultValue});
+        props.getState({[props.name]: props.defaultValue});
     }
     componentWillReceiveProps(nextProps) {
         if (this.props.defaultValue != nextProps.defaultValue) {
             this.setState({
                 value: nextProps.defaultValue,
-            });
+            });            
+            nextProps.getState({[nextProps.name]: nextProps.defaultValue});
         }        
     }
     change(event) {        

@@ -1,13 +1,15 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom';
 import {PUBLIC_URL} from '../constants';
+import imageEdit from '../images/icons/edit.png';
+import imageRemove from '../images/icons/delete.png';
 
 export default class SelectCar extends React.Component{
     
     render() {
         return (
-            <div>
-                <select id='selectcar' onChange={(event) => {this.props.current(event.target.value)}} >
+            <div id='selectcar'>
+                <select onChange={(event) => {this.props.current(event.target.value)}} >
                 {this.props.car.map(carlist => (                   
                     <option 
                         key={carlist.name} 
@@ -19,9 +21,9 @@ export default class SelectCar extends React.Component{
                 <button 
                     onClick={() => this.props.remove()}
                 >
-                Remove
+                    <img alt="Удалить" src={imageRemove}/>
                 </button>
-                <NavLink to={`${PUBLIC_URL}/editcar`}>Edit car</NavLink>
+                <NavLink to={`${PUBLIC_URL}/editcar`}><img alt="Изменить" src={imageEdit}/></NavLink>
             </div>
             
         );
