@@ -12,7 +12,9 @@ export default class AddItem extends React.Component {
             cars: this.props.cars,
             current: this.props.cars[0] ? this.props.cars[0].name : '',
             defaultMileage: this.props.cars[0] ? this.props.cars[0].mileage : '',
-        }        
+            buttonState1: true,
+            buttonState2: true,
+        };
     }
     componentWillReceiveProps(nextProps) {
         if (this.props.cars != nextProps.cars) {
@@ -37,14 +39,6 @@ export default class AddItem extends React.Component {
                 'type': state.type,
                 'current': state.current,
             };
-            this.setState ({
-                'mileage': '',
-                'fuel-remain': '',
-                'liters': '',
-                'cost-per-liter': '',
-                'oil-station': '',
-                'comment': '',
-            });
         } else if (state.type === 'other-costs') {
             newState = {
                 'date': state.date || '',
@@ -63,7 +57,8 @@ export default class AddItem extends React.Component {
             return (
                 <Refueling
                     getState={(state) => {this.setState(state)}}
-                    defaultMileage={this.state.defaultMileage}
+                    defaultMileage={this.state.defaultMileage}                    
+                    buttonstate={(state) => this.setState({buttonState1: state})}
                 />
             );
         } else if (this.state.type === "other-costs"){
@@ -71,6 +66,7 @@ export default class AddItem extends React.Component {
                 <OtherCosts 
                     getState={(state) => {this.setState(state)}}
                     defaultMileage={this.state.defaultMileage}
+                    buttonstate={(state) => this.setState({buttonState2: state})}
                 />
             );
         } else {
@@ -80,8 +76,12 @@ export default class AddItem extends React.Component {
         }        
     }
     changeState(type) {
-        this.setState({'type': type});    
-    }
+        this.setState({
+            'type': type,
+            buttonState1: true,
+            buttonState2: true,
+        });    
+    }    
     render() {
         return (
             <div id="additem">
@@ -104,7 +104,10 @@ export default class AddItem extends React.Component {
                     text="Другие траты"
                 />
                 {this.chooseType()} 
-                <button onClick={() => this.props.add(this.filterState(this.state))}>Сохранить</button>
+                <button 
+                    onClick={() => this.props.add(this.filterState(this.state))}
+                    disabled={this.state.buttonState1 && this.state.buttonState2}
+                >Сохранить</button>
             </div>
         );
     }

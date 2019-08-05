@@ -1,10 +1,10 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,700&display=swap');
 
 body {    
-    background: url('./images/icons/tyre.png');
+    background: no-repeat url('./images/icons/tyre.png');
     font-family: Open Sans;
     font-size: 16px;    
-    background-color: rgb(214, 234, 243);
+    background-color: #ffffff;
 }
 #root {    
     margin: 0 auto;
@@ -41,46 +41,57 @@ input[type="text"], input[type="number"], input[type="date"], select, input[type
     border: none;
     box-sizing:border-box;
     color: #000000;
+    background-color: #b7c2ff;
     box-shadow: 4px 12px 25px rgba(71, 55, 255, 0.08);
     padding: 0 10px 0 10px;
     font-size: 16px;
 }
-#addcar button, #additem button, #editcar button {
-    width: 200px;
-    height: 30px;
+button {
+    font-size: 16px;
+    background-color: rgb(17, 0, 255);
+    color: #ffffff;    
     border: none;
     border-radius: 8px;
+}
+#addcar button, #additem button, #editcar button {
+    width: 200px;
+    height: 40px;
     margin: 10px auto;
-    font-size: 16px;
-    background-color: rgb(253, 235, 153);
+    
+}
+button:disabled,
+button[disabled] {
+    color: rgb(95, 94, 94);
+    background-color: rgb(17, 0, 255, 0.6);
 }
 button:hover {
     cursor: pointer;
 }
 #categorylist {
-    display: flex;
-    flex-direction: row;
+    display: block
 }
-#categorylist div {
+#categorylist label {
+    display: inline-block;
     text-align: center;
     font-size: 14px;
 }
-#categorylist div input {
-    width: 80px;
+#categorylist label input {
+    width: 15px;
+    height: 15px;
 }
 #selectcar {
     display: flex;
     width: 300px;
     margin: 0 auto;
 }
-#selectcar button{
+#selectcar button, .reportList button {
     background: none;
     width: 30px;
     border: none;
     padding: 0;
     margin: 0 20px;
 }
-#selectcar button img{
+#selectcar button img, .reportList button img{
     width: 30px;    
 }
 #selectcar button:hover{    
@@ -96,3 +107,102 @@ button:hover {
 #error {
     color: red;
 }
+#fuelconsumption {
+    display: block;
+}
+.fuelconsumptionrow {
+    display: flex;    
+}
+.reportheader {
+    font-weight: 700;
+    margin-top: 20px;
+}
+input[type=range] {
+    -webkit-appearance: none;
+    width: 200px;
+  }
+  input[type=range]:focus {
+    outline: none;
+  }
+  input[type=range]::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 9.5px;
+    cursor: pointer;
+    box-shadow: 1.3px 1.3px 1px #000000, 0px 0px 1.3px #0d0d0d;
+    background: #2d71a9;
+    border-radius: 3.1px;
+    border: 0.7px solid #010101;
+  }
+  input[type=range]::-webkit-slider-thumb {
+    box-shadow: 1.1px 1.1px 1.4px #000000, 0px 0px 1.1px #0d0d0d;
+    border: 1.5px solid #000000;
+    height: 28px;
+    width: 19px;
+    border-radius: 7px;
+    background: #ffffff;
+    cursor: pointer;
+    -webkit-appearance: none;
+    margin-top: -9.95px;
+  }
+  input[type=range]:focus::-webkit-slider-runnable-track {
+    background: #4690ce;
+  }
+  input[type=range]::-moz-range-track {
+    width: 100%;
+    height: 9.5px;
+    cursor: pointer;
+    box-shadow: 1.3px 1.3px 1px #000000, 0px 0px 1.3px #0d0d0d;
+    background: #2d71a9;
+    border-radius: 3.1px;
+    border: 0.7px solid #010101;
+  }
+  input[type=range]::-moz-range-thumb {
+    box-shadow: 1.1px 1.1px 1.4px #000000, 0px 0px 1.1px #0d0d0d;
+    border: 1.5px solid #000000;
+    height: 28px;
+    width: 19px;
+    border-radius: 7px;
+    background: #ffffff;
+    cursor: pointer;
+  }
+  input[type=range]::-ms-track {
+    width: 100%;
+    height: 9.5px;
+    cursor: pointer;
+    background: transparent;
+    border-color: transparent;
+    color: transparent;
+  }
+  input[type=range]::-ms-fill-lower {
+    background: #205179;
+    border: 0.7px solid #010101;
+    border-radius: 6.2px;
+    box-shadow: 1.3px 1.3px 1px #000000, 0px 0px 1.3px #0d0d0d;
+  }
+  input[type=range]::-ms-fill-upper {
+    background: #2d71a9;
+    border: 0.7px solid #010101;
+    border-radius: 6.2px;
+    box-shadow: 1.3px 1.3px 1px #000000, 0px 0px 1.3px #0d0d0d;
+  }
+  input[type=range]::-ms-thumb {
+    box-shadow: 1.1px 1.1px 1.4px #000000, 0px 0px 1.1px #0d0d0d;
+    border: 1.5px solid #000000;
+    height: 28px;
+    width: 19px;
+    border-radius: 7px;
+    background: #ffffff;
+    cursor: pointer;
+    height: 9.5px;
+  }
+  input[type=range]:focus::-ms-fill-lower {
+    background: #2d71a9;
+  }
+  input[type=range]:focus::-ms-fill-upper {
+    background: #4690ce;
+  }
+  img:hover {
+      margin-top: -5px;
+      transition: 0.5s;
+  }
+  
