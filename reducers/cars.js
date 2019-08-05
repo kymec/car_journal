@@ -11,8 +11,6 @@ export default function reducer(state, payload) {
             return payload.car;
         case Constants.EDIT_CAR:
             return state.filter(car => car.name !== payload.car.name).concat(payload.car);
-        case Constants.ERROR:
-            return ({error: payload.message});
     }    
     if (state) {
         return state;

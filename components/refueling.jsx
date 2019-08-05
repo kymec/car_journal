@@ -52,12 +52,14 @@ export default class Refueling extends React.Component {
                     getState={(state) => {this.props.getState(state)}} 
                 />
                 <InputText 
+                    type="text"
                     text="Название заправки" 
                     placeholder="Окко" 
                     name="oil-station" 
                     getState={(state) => {this.props.getState(state)}} 
                 />
                 <InputText 
+                    type="text"
                     text="Комментарий" 
                     name="comment" 
                     getState={(state) => {this.props.getState(state)}} 

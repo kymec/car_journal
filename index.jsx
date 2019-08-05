@@ -45,8 +45,7 @@ class MainPage extends React.Component {
         this.props.getList();
         this.props.getItem();
     }
-
-    render() {
+    render() {    
         return (                   
             <Router>
                 <Choose cars={this.props.cars} />                          

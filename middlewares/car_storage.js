@@ -5,7 +5,7 @@ export default (store) => (next) => (payload) => {
 
     if(payload.type === ADD_CAR || payload.type === REMOVE_CAR || payload.type === EDIT_CAR) {
         const cars = store.getState().cars;
-        localStorage.setItem('cars', JSON.stringify(cars));        
+        localStorage.setItem('cars', JSON.stringify(cars));      
     }
     if(payload.type === GET_CAR) {
         try {

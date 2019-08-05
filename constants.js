@@ -1,1 +1,1 @@
-export const PUBLIC_URL = ''//'/car_journal';
+export const PUBLIC_URL = '/car_journal';
