@@ -14,7 +14,7 @@ body {
     text-align: center;
     margin: 10px 10px;
 }
-#addcar, #additem, #editcar {
+#addcar, #additem {
     display: flex;
     flex-direction: column;
     text-align: center;
