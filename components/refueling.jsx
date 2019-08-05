@@ -4,15 +4,33 @@ import InputText from '../components/inputtext';
 
 
 export default class Refueling extends React.Component {
-    
-    render() {        
+    constructor() {
+        super();
+        this.state = {};
+        this.inputvalue = {};
+    }
+    checkInput(state) {
+        this.inputvalue = {...this.inputvalue, ...state};
+        if(
+            this.inputvalue.date &&
+            this.inputvalue.mileage &&
+            this.inputvalue.liters &&
+            this.inputvalue['oil-station'] &&
+            this.inputvalue['cost-per-liter']
+        ) {
+            this.props.buttonstate(false);            
+        } else {
+            this.props.buttonstate(true);
+        }        
+    }
+    render() {
         return (
             <div>
                 <InputText 
                     type="date" 
                     text="Дата" 
                     name="date" 
-                    getState={(state) => {this.props.getState(state)}}
+                    getState={(state) => {this.props.getState(state); this.checkInput(state)}}
                     defaultValue={new Date().yyyymmdd()}
                 />
                 <InputText
@@ -22,7 +40,7 @@ export default class Refueling extends React.Component {
                     text="Пробег (км.)" 
                     placeholder="5000"
                     name="mileage"
-                    getState={(state) => {this.props.getState(state)}}
+                    getState={(state) => {this.props.getState(state); this.checkInput(state)}}
                     defaultValue={this.props.defaultMileage}
                 />
                 <InputText 
@@ -40,7 +58,7 @@ export default class Refueling extends React.Component {
                     text="Заправлено литров" 
                     placeholder="20" 
                     name="liters" 
-                    getState={(state) => {this.props.getState(state)}} 
+                    getState={(state) => {this.props.getState(state); this.checkInput(state)}} 
                 />
                 <InputText 
                     type="number"
@@ -49,14 +67,14 @@ export default class Refueling extends React.Component {
                     text="Стоимость 1 литра (грн.)" 
                     placeholder="30" 
                     name="cost-per-liter" 
-                    getState={(state) => {this.props.getState(state)}} 
+                    getState={(state) => {this.props.getState(state); this.checkInput(state)}} 
                 />
                 <InputText 
                     type="text"
                     text="Название заправки" 
                     placeholder="Окко" 
                     name="oil-station" 
-                    getState={(state) => {this.props.getState(state)}} 
+                    getState={(state) => {this.props.getState(state); this.checkInput(state)}} 
                 />
                 <InputText 
                     type="text"

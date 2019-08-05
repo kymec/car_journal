@@ -1,6 +1,7 @@
 import React from 'react';
 import InputCategory from '../components/inputcategory';
 import categoryList from '../categorylist';
+import imageRemove from '../images/icons/delete.png';
 
 export default class ShowItems extends React.Component{
     constructor(props) {
@@ -8,18 +9,20 @@ export default class ShowItems extends React.Component{
         this.state = {}
         this.sumRef = 0;
         this.sumOth = 0;
-        this.RefQnt = 0;
-        this.RefFirstMileage = 0;
-        this.RefLastMileage = 0;
-        this.RefFirstLiters = 0;
-        this.RefLastLitersSum = 0;
-        this.RefLastLiters = 0;
-        this.RefBeforeLastLiters = 0;
-        this.RefBeforeLastLitersSum = 0;
-        this.RefFirstCost = 0;
-        this.RefLastCost = 0;
-        this.RefBeforeLastCost = 0;
-        this.RefBeforeLastMileage = 0;
+        this.refQnt = 0;
+        this.refFirstMileage = 0;
+        this.refLastMileage = 0;
+        this.refFirstLiters = 0;
+        this.refLastLitersSum = 0;
+        this.refLastLiters = 0;
+        this.refBeforeLastLiters = 0;
+        this.refBeforeLastLitersSum = 0;
+        this.refFirstCost = 0;
+        this.refLastCost = 0;
+        this.refBeforeLastCost = 0;
+        this.refBeforeLastMileage = 0;
+        this.refDifferenceBefore = 0;
+        this.refDifference = 0;
         this.category={};
         this.state = this.getCategoryList()
         
@@ -40,18 +43,20 @@ export default class ShowItems extends React.Component{
             ) {
                 if (obj.type === 'refueling') {
                     this.sumRef += obj.liters * obj['cost-per-liter'];
-                    this.RefQnt += 1;
-                    if (this.RefFirstMileage === 0) {
-                        this.RefFirstMileage = +obj.mileage;
+                    this.refQnt += 1;
+                    if (this.refFirstMileage === 0) {
+                        this.refFirstMileage = +obj.mileage;
                     }
-                    this.RefBeforeLastMileage = this.RefLastMileage;
-                    this.RefLastMileage = +obj.mileage;
-                    this.RefBeforeLastLiters = this.RefLastLiters;
-                    this.RefBeforeLastLitersSum = this.RefLastLitersSum;
-                    this.RefBeforeLastCost = this.RefLastCost;
-                    this.RefLastLitersSum += +obj.liters;
-                    this.RefLastLiters = +obj.liters;
-                    this.RefLastCost += obj.liters * obj['cost-per-liter'];
+                    this.refBeforeLastMileage = this.refLastMileage;
+                    this.refLastMileage = +obj.mileage;
+                    this.refBeforeLastLiters = this.refLastLiters;
+                    this.refBeforeLastLitersSum = this.refLastLitersSum;
+                    this.refBeforeLastCost = this.refLastCost;
+                    this.refLastLitersSum += +obj.liters;
+                    this.refLastLiters = +obj.liters;
+                    this.refLastCost += obj.liters * obj['cost-per-liter'];
+                    this.refDifference = (this.refDifferenceBefore - obj['fuel-remain']);
+                    this.refDifferenceBefore = obj['fuel-remain'];
 
                     return (
                         <div className="reportList">
@@ -60,7 +65,7 @@ export default class ShowItems extends React.Component{
                             <div>Стоимость заправки: {obj.liters * obj['cost-per-liter']} грн.</div>
                             <div>Заправка: {obj['oil-station']}</div>
                             <div>Комментарий: {obj.comment}</div>
-                            <button onClick={() => this.props.removeItem(index)}>Удалить</button>
+                            <button onClick={() => this.props.removeItem(index)}><img alt="Удалить" src={imageRemove}/></button>
                         </div>
                     )
                 } else if (obj.type === 'other-costs' && this.state[obj.category]) {
@@ -73,7 +78,7 @@ export default class ShowItems extends React.Component{
                                 <div>Категория: {obj.category} грн.</div>
                                 <div>Стоимость: {obj.cost} грн.</div>
                                 <div>Комментарий: {obj.comment}</div>
-                                <button onClick={() => this.props.removeItem(index)}>Удалить</button>
+                                <button onClick={() => this.props.removeItem(index)}><img alt="Удалить" src={imageRemove}/></button>
                             </div>
                         </div>
                         
@@ -89,19 +94,18 @@ export default class ShowItems extends React.Component{
     fuelConsumption() {
         if (this.props.filter.type === 'refueling') {
             return (
-                <div>              
-                    <div>Расход топлива средний: литров / 100 км{this.middleCons()}</div>
-                    <div>Расход топлива с последней заправки: литров / 100 км{this.middleConsLast()}</div>
-                    <div>Расход топлива средний: грн. / 1000 км{this.middleConsCost()}</div>
+                <div id="fuelconsumption">              
+                    <div className="fuelconsumptionrow">Расход топлива: {this.middleCons()} литров / 100 км, {this.middleConsCost()} грн. / 100 км</div>
+                    <div className="fuelconsumptionrow">Расход топлива с последней заправки: {this.middleConsLast()} литров / 100 км</div>
                 </div>
             );
         }
     }
     middleCons() {
-        if (this.RefQnt > 2) {
+        if (this.refQnt > 2) {
             return (
                 <div>
-                    {this.RefBeforeLastLitersSum / (this.RefLastMileage - this.RefFirstMileage) * 100}
+                    {Math.round(this.refBeforeLastLitersSum / (this.refLastMileage - this.refFirstMileage) * 10000) / 100}
                 </div>
             );            
         } else {
@@ -109,10 +113,10 @@ export default class ShowItems extends React.Component{
         }
     }
     middleConsLast() {
-        if (this.RefQnt > 1) {
+        if (this.refQnt > 1) {
             return (
                 <div>
-                    {this.RefBeforeLastLiters / (this.RefLastMileage - this.RefBeforeLastMileage) * 100}
+                    {Math.round((this.refBeforeLastLiters + this.refDifference) / (this.refLastMileage - this.refBeforeLastMileage) * 10000) / 100}
                 </div>
             );            
         } else {
@@ -120,10 +124,10 @@ export default class ShowItems extends React.Component{
         }
     }
     middleConsCost() {
-        if (this.RefQnt > 2) {
+        if (this.refQnt > 2) {
             return (
                 <div>
-                    {this.RefBeforeLastCost / (this.RefLastMileage - this.RefFirstMileage) * 1000}
+                    {Math.round(this.refBeforeLastCost / (this.refLastMileage - this.refFirstMileage) * 10000) / 100}
                 </div>
             );            
         } else {
@@ -133,21 +137,21 @@ export default class ShowItems extends React.Component{
     render() {
         this.sumRef = 0;
         this.sumOth = 0;
-        this.RefQnt = 0;
-        this.RefFirstMileage = 0;
-        this.RefLastMileage = 0;
-        this.RefFirstLiters = 0;
-        this.RefLastLitersSum = 0;
-        this.RefLastLiters = 0;
-        this.RefBeforeLastLiters = 0;
-        this.RefBeforeLastLitersSum = 0;
-        this.RefFirstCost = 0;
-        this.RefLastCost = 0;
-        this.RefBeforeLastCost = 0;
-        this.RefBeforeLastMileage = 0;
+        this.refQnt = 0;
+        this.refFirstMileage = 0;
+        this.refLastMileage = 0;
+        this.refFirstLiters = 0;
+        this.refLastLitersSum = 0;
+        this.refLastLiters = 0;
+        this.refBeforeLastLiters = 0;
+        this.refBeforeLastLitersSum = 0;
+        this.refFirstCost = 0;
+        this.refLastCost = 0;
+        this.refBeforeLastCost = 0;
+        this.refBeforeLastMileage = 0;
         return (
             <div>                
-                <div>{this.props.header}</div>
+                <div className="reportheader">{this.props.header}</div>
                 <div id="categorylist">
                 {   this.props.header === 'Другие расходы' ?                                     
                         categoryList.map((item) => (
@@ -169,8 +173,7 @@ export default class ShowItems extends React.Component{
                     </div>
                 ))}
                 {this.fuelConsumption()}
-                <div>Всего за период: { this.props.filter.type === 'refueling' ? this.sumRef : this.sumOth }</div>
-
+                <div>Всего за период: { this.props.filter.type === 'refueling' ? this.sumRef : this.sumOth } грн.</div>
             </div>
             
         );
