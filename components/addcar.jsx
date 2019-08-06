@@ -16,12 +16,14 @@ export default class AddCar extends React.Component {
         this.inputvalue = {...this.inputvalue, ...state};
         this.setState({
             error: '',
+            borderStyle: {},
         });
         this.inputvalue.error = '';
         this.props.cars.map((value) => {
             if(value.name === this.inputvalue.name) {
                 this.setState({
                     error: 'такое имя автомобиля уже существует',
+                    borderStyle: {border: '1px solid red'},
                 });
                 this.inputvalue.error = 'такое имя автомобиля уже существует';
             }
@@ -51,6 +53,7 @@ export default class AddCar extends React.Component {
                     name="name" 
                     text="Уникальное имя автомобиля" 
                     placeholder="моя машина"
+                    style={this.state.borderStyle}
                     getState={(state) => {this.setState(state); this.checkInput(state)}}
                     defaultValue={this.state.name || ''}/>
                 <InputText
@@ -104,7 +107,7 @@ export default class AddCar extends React.Component {
                     max="1000"
                     name="fuel-tank" 
                     text="Обьём бака автомобиля (литров)" 
-                    placeholder="43" 
+                    placeholder="50" 
                     getState={(state) => {this.setState(state); this.checkInput(state)}}
                     defaultValue={this.state['fuel-tank']}
                 />
