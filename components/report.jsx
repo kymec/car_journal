@@ -29,7 +29,7 @@ export default class Report extends React.Component {
                     remove={() => this.props.remove(this.state.current)}
                     current={(current) => this.setState({current: current})}
                 /> 
-                <div>
+                <div id="period">
                     <div>период с:</div>
                     <input 
                         type='date' 

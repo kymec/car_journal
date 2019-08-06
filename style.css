@@ -38,11 +38,10 @@ input[type="text"], input[type="number"], input[type="date"], select, input[type
     border-radius: 8px;
     width: 200px;
     height: 30px;
-    border: none;
+    border: 1px solid rgb(17, 0, 255);
     box-sizing:border-box;
     color: #000000;
-    background-color: #b7c2ff;
-    box-shadow: 4px 12px 25px rgba(71, 55, 255, 0.08);
+    background-color: #ffffff;
     padding: 0 10px 0 10px;
     font-size: 16px;
 }
@@ -62,7 +61,7 @@ button {
 button:disabled,
 button[disabled] {
     color: rgb(95, 94, 94);
-    background-color: rgb(17, 0, 255, 0.6);
+    background-color: rgb(17, 0, 255, 0.5);
 }
 button:hover {
     cursor: pointer;
@@ -82,6 +81,7 @@ button:hover {
 #selectcar {
     display: flex;
     width: 300px;
+    height: 30px;
     margin: 0 auto;
 }
 #selectcar button, .reportList button {
@@ -106,6 +106,7 @@ button:hover {
 }
 #error {
     color: red;
+    height: 25px;
 }
 #fuelconsumption {
     display: block;
@@ -117,6 +118,7 @@ button:hover {
     font-weight: 700;
     margin-top: 20px;
 }
+
 input[type=range] {
     -webkit-appearance: none;
     width: 200px;
@@ -201,8 +203,16 @@ input[type=range] {
   input[type=range]:focus::-ms-fill-upper {
     background: #4690ce;
   }
+
   img:hover {
       margin-top: -5px;
       transition: 0.5s;
   }
-  
+  #period {
+      display: flex;
+      justify-content: center;
+      margin: 10px 10px;
+  }
+  #period input {
+      margin: 0 15px 0 5px;
+  }
