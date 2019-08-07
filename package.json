@@ -1,6 +1,6 @@
 {
   "name": "car_journal",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Приложения для ведения журнала автомобиля.",
   "main": "index.js",
   "scripts": {
