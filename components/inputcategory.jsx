@@ -15,7 +15,8 @@ export default class InputCategory extends React.Component{
                     type="checkbox" 
                     name={this.props.name}
                     defaultChecked
-                />{this.props.name} 
+                /><br/>
+                {this.props.name} 
             </label>      
         );
     }
