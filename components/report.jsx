@@ -9,14 +9,14 @@ export default class Report extends React.Component {
             from: "1950-01-01",
             to: "2050-01-01",
             cars: props.cars[0] ? props.cars : '',
-            current: props.cars[0] ? props.cars[0].name : '',
+            current: this.props.current ? this.props.current : '',
         };        
     }
     componentWillReceiveProps(nextProps) {
         if (this.props.cars != nextProps.cars) {
             this.setState({
                 cars: nextProps.cars,
-                current: nextProps.cars[0] ? nextProps.cars[0].name : '',
+                current: nextProps.current ? nextProps.current : '',
             });
         }
     }
@@ -28,9 +28,10 @@ export default class Report extends React.Component {
                     car={this.props.cars}
                     remove={() => this.props.remove(this.state.current)}
                     current={(current) => this.setState({current: current})}
+                    selected={this.state.current}
                 /> 
                 <div id="period">
-                    <div>период с:</div>
+                    <div>с:</div>
                     <input 
                         type='date' 
                         onChange={(event) => this.setState({from: event.target.value})}

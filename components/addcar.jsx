@@ -1,6 +1,6 @@
-
 import React from 'react';
 import InputText from '../components/inputtext';
+import {PUBLIC_URL} from '../constants';
 
 
 export default class AddCar extends React.Component {
@@ -47,7 +47,7 @@ export default class AddCar extends React.Component {
     render() {
         return (
             <div id="addcar">
-                <div id="error">{this.state.error}</div>
+                <div className="error">{this.state.error}</div>
                 <InputText
                     type="text"
                     name="name" 
@@ -122,17 +122,7 @@ export default class AddCar extends React.Component {
                             year: this.state.year,
                             mileage: this.state.mileage,
                         });
-                        /*Очистка полей
-                        this.setState({
-                            'brand': "",
-                            'buttonState': true,
-                            'engine-volume': '',
-                            'fuel-tank': '',
-                            'mileage': '',
-                            'model': '',
-                            'name': '',
-                            'year': '',
-                        });*/
+                        location.href = PUBLIC_URL;
                     }}
                     disabled={this.state.buttonState}
                 >Сохранить</button>
