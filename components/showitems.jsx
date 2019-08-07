@@ -6,7 +6,6 @@ import imageRemove from '../images/icons/delete.png';
 export default class ShowItems extends React.Component{
     constructor(props) {
         super(props);
-        this.state = {}
         this.sumRef = 0;
         this.sumOth = 0;
         this.refQnt = 0;
@@ -24,8 +23,8 @@ export default class ShowItems extends React.Component{
         this.refDifferenceBefore = 0;
         this.refDifference = 0;
         this.category={};
-        this.state = this.getCategoryList()
-        
+        this.error = "";
+        this.state = {...this.getCategoryList()};     
     }
     getCategoryList() {
         let obj = {};
@@ -40,7 +39,7 @@ export default class ShowItems extends React.Component{
             obj.type === this.props.filter.type &&
             new Date(obj.date) <= new Date(this.props.filter.to) &&
             new Date(obj.date) >= new Date(this.props.filter.from) 
-            ) {
+            ){
                 if (obj.type === 'refueling') {
                     this.sumRef += obj.liters * obj['cost-per-liter'];
                     this.refQnt += 1;
@@ -92,44 +91,51 @@ export default class ShowItems extends React.Component{
     fuelConsumption() {
         if (this.props.filter.type === 'refueling') {
             return (
-                <div id="fuelconsumption">              
+                <div id="fuelconsumption">      
                     <div className="fuelconsumptionrow">Расход за период {this.middleCons()} л/100км, {this.middleConsCost()} грн/100км</div>
                     <div className="fuelconsumptionrow">Расход последний {this.middleConsLast()} л/100км</div>
+                    <div className="error">{this.error}</div>
                 </div>
             );
         }
     }
     middleCons() {
         if (this.refQnt > 2) {
+            this.error = "";
             return (
                 <div>
                     {Math.round(this.refBeforeLastLitersSum / (this.refLastMileage - this.refFirstMileage) * 10000) / 100}
                 </div>
             );            
-        } else {
-            return (<div>Надо добавить не меньше 3-х заправок</div>);            
+        } else { 
+            this.error = "Внесите минимум 3 заправки";           
+            return (<div>---</div>);       
         }
     }
     middleConsLast() {
         if (this.refQnt > 1) {
+            this.error = "";
             return (
                 <div>
                     {Math.round((this.refBeforeLastLiters + this.refDifference) / (this.refLastMileage - this.refBeforeLastMileage) * 10000) / 100}
                 </div>
             );            
         } else {
-            return (<div>Надо добавить не меньше 2-х заправок</div>);            
+            this.error = "Внесите минимум 2 заправки";
+            return (<div>---</div>);            
         }
     }
     middleConsCost() {
         if (this.refQnt > 2) {
+            this.error = "";
             return (
                 <div>
                     {Math.round(this.refBeforeLastCost / (this.refLastMileage - this.refFirstMileage) * 10000) / 100}
                 </div>
             );            
         } else {
-            return (<div>Надо добавить не меньше 3-х заправок</div>);            
+            this.error = "Внесите минимум 3 заправки";
+            return (<div>---</div>);            
         }
     }
     reportHeaderCols() {
@@ -138,8 +144,8 @@ export default class ShowItems extends React.Component{
             <div className="reportheadercols">
                 <div>Дата</div>
                 <div>Пробег</div>
-                <div>Стоимость</div>
-                <div>Заправка:</div>
+                <div>Сумма</div>
+                <div>Заправка</div>
                 <div></div>
             </div>
             )
@@ -148,8 +154,8 @@ export default class ShowItems extends React.Component{
             <div className="reportheadercols">
                 <div>Дата</div>
                 <div>Пробег</div>
-                <div>Категория</div>
-                <div>Стоимость</div>
+                <div>Тип</div>
+                <div>Сумма</div>
                 <div></div>
             </div>
             )

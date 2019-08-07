@@ -3,6 +3,7 @@ import InputRadio from '../components/inputradio';
 import Refueling from '../components/refueling';
 import OtherCosts from '../components/other-costs';
 import SelectCar from './selectcar';
+import {PUBLIC_URL} from '../constants';
 
 export default class AddItem extends React.Component {
     constructor(props) {
@@ -10,8 +11,8 @@ export default class AddItem extends React.Component {
         this.state = {
             type: "",
             cars: this.props.cars,
-            current: this.props.cars[0] ? this.props.cars[0].name : '',
-            defaultMileage: this.props.cars[0] ? this.props.cars[0].mileage : '',
+            current: this.props.current ? this.props.current : '',
+            defaultMileage: this.props.cars[0] && this.props.current ? this.props.cars[this.props.cars.map((obj) => obj.name).indexOf(this.props.current)].mileage : '',
             buttonState1: true,
             buttonState2: true,
         };
@@ -20,8 +21,8 @@ export default class AddItem extends React.Component {
         if (this.props.cars != nextProps.cars) {
             this.setState({
                 cars: nextProps.cars,
-                current: nextProps.cars[0] ? nextProps.cars[0].name : '',
-                defaultMileage: nextProps.cars[0] ? nextProps.cars[0] : '',
+                current: nextProps.current ? nextProps.current : '',
+                defaultMileage: nextProps.cars[0] && nextProps.current ? nextProps.cars[nextProps.cars.map((obj) => obj.name).indexOf(nextProps.current)].mileage : '',
             });
         }
     }
@@ -92,6 +93,7 @@ export default class AddItem extends React.Component {
                         this.currentIndex = this.props.cars.map((obj) => obj.name).indexOf(current);                        
                         this.setState({current: current, defaultMileage: this.props.cars[this.currentIndex].mileage,});
                         }}
+                    selected={this.state.current}
                 />                             
                 <InputRadio 
                     name="type" 
@@ -105,7 +107,10 @@ export default class AddItem extends React.Component {
                 />
                 {this.chooseType()} 
                 <button 
-                    onClick={() => this.props.add(this.filterState(this.state))}
+                    onClick={() => {
+                        this.props.add(this.filterState(this.state)); 
+                        location.href = PUBLIC_URL;
+                    }}
                     disabled={this.state.buttonState1 && this.state.buttonState2}
                 >Сохранить</button>
             </div>

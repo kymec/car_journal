@@ -45,7 +45,7 @@ class MainPage extends React.Component {
         this.props.getList();
         this.props.getItem();
     }
-    render() {    
+    render() {        
         return (                   
             <Router>
                 <Choose cars={this.props.cars} />                          
@@ -77,6 +77,7 @@ class MainPage extends React.Component {
                                 add={(item) => this.props.additem(item)}
                                 cars={this.props.cars}
                                 remove={(car) => this.props.remove(car)}
+                                current={this.state.current}
                             />}
                     />
                     <Route 
@@ -87,6 +88,7 @@ class MainPage extends React.Component {
                                 items={this.props.items}
                                 remove={(car) => this.props.remove(car)}                                
                                 removeItem={(item) => this.props.removeItem(item)}
+                                current={this.state.current}
                             />}
                     />    
                     <Route 

@@ -9,10 +9,13 @@ export default class SelectCar extends React.Component{
     render() {
         return (
             <div id='selectcar'>
-                <select onChange={(event) => {this.props.current(event.target.value)}} >
+                <select 
+                    onChange={(event) => {this.props.current(event.target.value)}}                     
+                    defaultValue={this.props.selected}
+                >
                 {this.props.car.map(carlist => (                   
                     <option 
-                        key={carlist.name} 
+                        key={carlist.name}
                     >
                         {carlist.name}
                     </option>
