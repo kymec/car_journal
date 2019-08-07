@@ -35,6 +35,7 @@ export default class InputText extends React.Component{
                     onChange={this.change.bind(this)}                    
                     value={this.state.value || ''} 
                     disabled={this.props.disabled}
+                    style={this.props.style}
                 ></input>
             </label>
         );
