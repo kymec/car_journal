@@ -60,11 +60,10 @@ export default class ShowItems extends React.Component{
 
                     return (
                         <div className="reportList">
-                            <div>Дата: {obj.date}</div>
-                            <div>Пробег: {obj.mileage} км</div>
-                            <div>Стоимость заправки: {obj.liters * obj['cost-per-liter']} грн.</div>
-                            <div>Заправка: {obj['oil-station']}</div>
-                            <div>Комментарий: {obj.comment}</div>
+                            <div>{obj.date}</div>
+                            <div>{obj.mileage}</div>
+                            <div>{obj.liters * obj['cost-per-liter']}</div>
+                            <div>{obj['oil-station']}</div>
                             <button onClick={() => this.props.removeItem(index)}><img alt="Удалить" src={imageRemove}/></button>
                         </div>
                     )
@@ -73,11 +72,10 @@ export default class ShowItems extends React.Component{
                     return (
                         <div>
                             <div className="reportList">
-                                <div>Дата: {obj.date}</div>
-                                <div>Пробег: {obj.mileage} км</div>
-                                <div>Категория: {obj.category} грн.</div>
-                                <div>Стоимость: {obj.cost} грн.</div>
-                                <div>Комментарий: {obj.comment}</div>
+                                <div>{obj.date}</div>
+                                <div>{obj.mileage}</div>
+                                <div>{obj.category}</div>
+                                <div>{obj.cost}</div>
                                 <button onClick={() => this.props.removeItem(index)}><img alt="Удалить" src={imageRemove}/></button>
                             </div>
                         </div>
@@ -95,8 +93,8 @@ export default class ShowItems extends React.Component{
         if (this.props.filter.type === 'refueling') {
             return (
                 <div id="fuelconsumption">              
-                    <div className="fuelconsumptionrow">Расход топлива: {this.middleCons()} литров / 100 км, {this.middleConsCost()} грн. / 100 км</div>
-                    <div className="fuelconsumptionrow">Расход топлива с последней заправки: {this.middleConsLast()} литров / 100 км</div>
+                    <div className="fuelconsumptionrow">Расход за период {this.middleCons()} л/100км, {this.middleConsCost()} грн/100км</div>
+                    <div className="fuelconsumptionrow">Расход последний {this.middleConsLast()} л/100км</div>
                 </div>
             );
         }
@@ -134,6 +132,29 @@ export default class ShowItems extends React.Component{
             return (<div>Надо добавить не меньше 3-х заправок</div>);            
         }
     }
+    reportHeaderCols() {
+        if (this.props.filter.type === 'refueling'){
+            return (
+            <div className="reportheadercols">
+                <div>Дата</div>
+                <div>Пробег</div>
+                <div>Стоимость</div>
+                <div>Заправка:</div>
+                <div></div>
+            </div>
+            )
+        } else {
+            return (
+            <div className="reportheadercols">
+                <div>Дата</div>
+                <div>Пробег</div>
+                <div>Категория</div>
+                <div>Стоимость</div>
+                <div></div>
+            </div>
+            )
+        }
+    }
     render() {
         this.sumRef = 0;
         this.sumOth = 0;
@@ -150,10 +171,10 @@ export default class ShowItems extends React.Component{
         this.refBeforeLastCost = 0;
         this.refBeforeLastMileage = 0;
         return (
-            <div>                
+            <div id={this.props.filter.type}>                
                 <div className="reportheader">{this.props.header}</div>
                 <div id="categorylist">
-                {   this.props.header === 'Другие расходы' ?                                     
+                {   this.props.filter.type === 'other-costs' ?                                     
                         categoryList.map((item) => (
                             <InputCategory 
                             key={item}
@@ -165,6 +186,7 @@ export default class ShowItems extends React.Component{
                     <div />
                 }
                 </div>
+                {this.reportHeaderCols()}
                 {this.props.items.map((item, index) => (                   
                     <div 
                         key={index}
