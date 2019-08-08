@@ -11,8 +11,8 @@ export default class AddItem extends React.Component {
         this.state = {
             type: "",
             cars: this.props.cars,
-            current: this.props.current ? this.props.current : '',
-            defaultMileage: this.props.cars[0] && this.props.current ? this.props.cars[this.props.cars.map((obj) => obj.name).indexOf(this.props.current)].mileage : '',
+            current: this.props.setcurrent ? this.props.setcurrent : '',
+            defaultMileage: this.props.cars[0] && this.props.setcurrent ? this.props.cars[this.props.cars.map((obj) => obj.name).indexOf(this.props.setcurrent)].mileage : '',
             buttonState1: true,
             buttonState2: true,
         };
@@ -21,8 +21,8 @@ export default class AddItem extends React.Component {
         if (this.props.cars != nextProps.cars) {
             this.setState({
                 cars: nextProps.cars,
-                current: nextProps.current ? nextProps.current : '',
-                defaultMileage: nextProps.cars[0] && nextProps.current ? nextProps.cars[nextProps.cars.map((obj) => obj.name).indexOf(nextProps.current)].mileage : '',
+                current: nextProps.setcurrent ? nextProps.setcurrent : '',
+                defaultMileage: nextProps.cars[0] && nextProps.setcurrent ? nextProps.cars[nextProps.cars.map((obj) => obj.name).indexOf(nextProps.setcurrent)].mileage : '',
             });
         }
     }
@@ -92,6 +92,7 @@ export default class AddItem extends React.Component {
                     current={(current) => {
                         this.currentIndex = this.props.cars.map((obj) => obj.name).indexOf(current);                        
                         this.setState({current: current, defaultMileage: this.props.cars[this.currentIndex].mileage,});
+                        this.props.getcurrent(current);
                         }}
                     selected={this.state.current}
                 />                             

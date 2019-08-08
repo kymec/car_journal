@@ -52,7 +52,7 @@ label {
     width: 80px
 }
 .reportList div:nth-child(3), .reportheadercols div:nth-child(3){
-    width: 70px
+    width: 55px
 }
 .reportList div:last-child, .reportheadercols div:last-child{
     width: 50px

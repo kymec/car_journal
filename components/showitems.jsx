@@ -6,6 +6,7 @@ import imageRemove from '../images/icons/delete.png';
 export default class ShowItems extends React.Component{
     constructor(props) {
         super(props);
+        this.currenttank = props.currenttank;
         this.sumRef = 0;
         this.sumOth = 0;
         this.refQnt = 0;
@@ -63,7 +64,11 @@ export default class ShowItems extends React.Component{
                             <div>{obj.mileage}</div>
                             <div>{obj.liters * obj['cost-per-liter']}</div>
                             <div>{obj['oil-station']}</div>
-                            <button onClick={() => this.props.removeItem(index)}><img alt="Удалить" src={imageRemove}/></button>
+                            <button onClick={() => {
+                                    if(confirm('Вы уверены что хотите удалить?')) {
+                                        this.props.removeItem(index);
+                                    }                                    
+                                }}><img alt="Удалить" src={imageRemove}/></button>
                         </div>
                     )
                 } else if (obj.type === 'other-costs' && this.state[obj.category]) {
@@ -73,9 +78,13 @@ export default class ShowItems extends React.Component{
                             <div className="reportList">
                                 <div>{obj.date}</div>
                                 <div>{obj.mileage}</div>
-                                <div>{obj.category}</div>
                                 <div>{obj.cost}</div>
-                                <button onClick={() => this.props.removeItem(index)}><img alt="Удалить" src={imageRemove}/></button>
+                                <div>{obj.category}</div>
+                                <button onClick={() => {
+                                    if(confirm('Вы уверены что хотите удалить?')) {
+                                        this.props.removeItem(index);
+                                    }                                    
+                                }}><img alt="Удалить" src={imageRemove}/></button>
                             </div>
                         </div>
                         
@@ -117,7 +126,7 @@ export default class ShowItems extends React.Component{
             this.error = "";
             return (
                 <div>
-                    {Math.round((this.refBeforeLastLiters + this.refDifference) / (this.refLastMileage - this.refBeforeLastMileage) * 10000) / 100}
+                    {Math.round((this.refBeforeLastLiters + this.refDifference * this.props.currenttank / 100) / (this.refLastMileage - this.refBeforeLastMileage) * 10000) / 100}
                 </div>
             );            
         } else {
@@ -154,8 +163,8 @@ export default class ShowItems extends React.Component{
             <div className="reportheadercols">
                 <div>Дата</div>
                 <div>Пробег</div>
-                <div>Тип</div>
                 <div>Сумма</div>
+                <div>Тип</div>
                 <div></div>
             </div>
             )

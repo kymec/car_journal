@@ -60,6 +60,7 @@ class MainPage extends React.Component {
                                 current={(current) => {                      
                                         this.setState({current: current});
                                     }}
+                                selected={this.state.current}
                         /> }
                     />
                     <Route 
@@ -68,6 +69,7 @@ class MainPage extends React.Component {
                             <AddCar {...props} 
                                 add={(car) => this.props.addcar(car)} 
                                 cars={this.props.cars}
+                                selected={this.state.current}
                             />}
                     />
                     <Route 
@@ -77,7 +79,10 @@ class MainPage extends React.Component {
                                 add={(item) => this.props.additem(item)}
                                 cars={this.props.cars}
                                 remove={(car) => this.props.remove(car)}
-                                current={this.state.current}
+                                setcurrent={this.state.current}
+                                getcurrent={(current) => {                      
+                                    this.setState({current: current});
+                                }}
                             />}
                     />
                     <Route 
@@ -89,6 +94,9 @@ class MainPage extends React.Component {
                                 remove={(car) => this.props.remove(car)}                                
                                 removeItem={(item) => this.props.removeItem(item)}
                                 current={this.state.current}
+                                getcurrent={(current) => {                      
+                                    this.setState({current: current});
+                                }}
                             />}
                     />    
                     <Route 

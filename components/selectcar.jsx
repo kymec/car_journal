@@ -22,7 +22,11 @@ export default class SelectCar extends React.Component{
                 ))}
                 </select>
                 <button 
-                    onClick={() => this.props.remove()}
+                    onClick={() => {
+                        if(confirm('Вы уверены что хотите удалить?')) {
+                            this.props.remove();
+                        }                        
+                    }}
                 >
                     <img alt="Удалить" src={imageRemove}/>
                 </button>
