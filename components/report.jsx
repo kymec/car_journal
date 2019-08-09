@@ -9,15 +9,26 @@ export default class Report extends React.Component {
             from: "1950-01-01",
             to: "2050-01-01",
             cars: props.cars[0] ? props.cars : '',
-            current: props.cars[0] ? props.cars[0].name : '',
-        };        
+            current: this.props.current ? this.props.current : '',
+        };
+        if(this.props.cars[0]) {
+            this.props.cars.map((item) => {
+                if(this.props.current === item.name) {
+                    this.currenttank = item['fuel-tank'];
+            }}) 
+        }
+        
     }
     componentWillReceiveProps(nextProps) {
         if (this.props.cars != nextProps.cars) {
             this.setState({
                 cars: nextProps.cars,
-                current: nextProps.cars[0] ? nextProps.cars[0].name : '',
+                current: nextProps.current ? nextProps.current : '',
             });
+            nextProps.cars.map((item) => {
+                if(nextProps.current === item.name) {                    
+                    this.currenttank = item['fuel-tank'];
+            }})
         }
     }
 
@@ -27,10 +38,14 @@ export default class Report extends React.Component {
                 <SelectCar 
                     car={this.props.cars}
                     remove={() => this.props.remove(this.state.current)}
-                    current={(current) => this.setState({current: current})}
+                    current={(current) => {
+                        this.setState({current: current});
+                        this.props.getcurrent(current);
+                    }}
+                    selected={this.state.current}
                 /> 
                 <div id="period">
-                    <div>период с:</div>
+                    <div>с:</div>
                     <input 
                         type='date' 
                         onChange={(event) => this.setState({from: event.target.value})}
@@ -53,6 +68,7 @@ export default class Report extends React.Component {
                         }}
                         header={'Заправка'}
                         removeItem={(item) => this.props.removeItem(item)}
+                        currenttank={this.currenttank}
                     />
                     <ShowItems 
                         items={this.props.items}

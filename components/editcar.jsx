@@ -1,5 +1,6 @@
 import React from 'react';
 import InputText from '../components/inputtext';
+import {PUBLIC_URL} from '../constants';
 
 
 export default class EditCar extends React.Component {
@@ -132,6 +133,7 @@ export default class EditCar extends React.Component {
                             year: this.state.year,
                             mileage: this.state.mileage,
                         });
+                        location.href = PUBLIC_URL;
                     }}
                     disabled={this.state ? this.state.buttonState : false}
                 >Сохранить</button>

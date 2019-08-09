@@ -2,6 +2,7 @@
 
 body {    
     background: no-repeat url('./images/icons/tyre.png');
+    background-position: 50% 0;
     font-family: Open Sans;
     font-size: 16px;    
     background-color: #ffffff;
@@ -9,6 +10,7 @@ body {
 #root {    
     margin: 0 auto;
     max-width: 600px;
+    padding-left: 5px;
 }
 #menu {
     text-align: center;
@@ -33,20 +35,27 @@ label {
 .reportList, .reportheadercols {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
 }
 .reportheadercols {
     font-weight: 700;
 }
 .reportList div, .reportheadercols div{
-    width: 85px;
+    width: 75px;
     height: 25px;
     font-size: 14px;
 }
 .reportList button img {
     width: 20px;
 }
+.reportList div:first-child, .reportheadercols div:last-child{
+    width: 80px
+}
+.reportList div:nth-child(3), .reportheadercols div:nth-child(3){
+    width: 55px
+}
 .reportList div:last-child, .reportheadercols div:last-child{
-    width: 35px
+    width: 50px
 }
 input[type="text"], input[type="number"], input[type="date"], select, input[type="range"] {
     border-radius: 8px;
@@ -97,15 +106,15 @@ button:hover {
 }
 #selectcar {
     display: flex;
-    width: 300px;
     height: 30px;
-    margin: 0 auto;
+    margin-left: calc(50% - 100px);
 }
 #selectcar button, .reportList button {
     background: none;
     width: 30px;
     border: none;
     padding: 0;
+    margin: 0 10px;
 }
 #selectcar button img {
     width: 30px;    
@@ -120,7 +129,7 @@ button:hover {
     height: 40px;
     margin: 0 15px;
 }
-#error {
+.error {
     color: red;
     height: 25px;
 }
@@ -137,88 +146,88 @@ button:hover {
 
 input[type=range] {
     -webkit-appearance: none;
-    width: 200px;
-}
-input[type=range]:focus {
-outline: none;
-}
-input[type=range]::-webkit-slider-runnable-track {
-width: 100%;
-height: 9.5px;
-cursor: pointer;
-box-shadow: 1.3px 1.3px 1px #000000, 0px 0px 1.3px #0d0d0d;
-background: #2d71a9;
-border-radius: 3.1px;
-border: 0.7px solid #010101;
-}
-input[type=range]::-webkit-slider-thumb {
-box-shadow: 1.1px 1.1px 1.4px #000000, 0px 0px 1.1px #0d0d0d;
-border: 1.5px solid #000000;
-height: 28px;
-width: 19px;
-border-radius: 7px;
-background: #ffffff;
-cursor: pointer;
--webkit-appearance: none;
-margin-top: -9.95px;
-}
-input[type=range]:focus::-webkit-slider-runnable-track {
-background: #4690ce;
-}
-input[type=range]::-moz-range-track {
-width: 100%;
-height: 9.5px;
-cursor: pointer;
-box-shadow: 1.3px 1.3px 1px #000000, 0px 0px 1.3px #0d0d0d;
-background: #2d71a9;
-border-radius: 3.1px;
-border: 0.7px solid #010101;
-}
-input[type=range]::-moz-range-thumb {
-box-shadow: 1.1px 1.1px 1.4px #000000, 0px 0px 1.1px #0d0d0d;
-border: 1.5px solid #000000;
-height: 28px;
-width: 19px;
-border-radius: 7px;
-background: #ffffff;
-cursor: pointer;
-}
-input[type=range]::-ms-track {
-width: 100%;
-height: 9.5px;
-cursor: pointer;
-background: transparent;
-border-color: transparent;
-color: transparent;
-}
-input[type=range]::-ms-fill-lower {
-background: #205179;
-border: 0.7px solid #010101;
-border-radius: 6.2px;
-box-shadow: 1.3px 1.3px 1px #000000, 0px 0px 1.3px #0d0d0d;
-}
-input[type=range]::-ms-fill-upper {
-background: #2d71a9;
-border: 0.7px solid #010101;
-border-radius: 6.2px;
-box-shadow: 1.3px 1.3px 1px #000000, 0px 0px 1.3px #0d0d0d;
-}
-input[type=range]::-ms-thumb {
-box-shadow: 1.1px 1.1px 1.4px #000000, 0px 0px 1.1px #0d0d0d;
-border: 1.5px solid #000000;
-height: 28px;
-width: 19px;
-border-radius: 7px;
-background: #ffffff;
-cursor: pointer;
-height: 9.5px;
-}
-input[type=range]:focus::-ms-fill-lower {
-background: #2d71a9;
-}
-input[type=range]:focus::-ms-fill-upper {
-background: #4690ce;
-}
+  }
+  input[type=range]:focus {
+    outline: none;
+  }
+  input[type=range]::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 8.4px;
+    cursor: pointer;
+    box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+    background: #3071a9;
+    border-radius: 1.3px;
+    border: 0.2px solid #010101;
+  }
+  input[type=range]::-webkit-slider-thumb {
+    box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+    border: 1px solid #000000;
+    height: 25px;
+    width: 10px;
+    border-radius: 9px;
+    background: #ffffff;
+    cursor: pointer;
+    -webkit-appearance: none;
+    margin-top: -8.5px;
+  }
+  input[type=range]:focus::-webkit-slider-runnable-track {
+    background: #367ebd;
+  }
+  input[type=range]::-moz-range-track {
+    width: 100%;
+    height: 8.4px;
+    cursor: pointer;
+    box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+    background: #3071a9;
+    border-radius: 1.3px;
+    border: 0.2px solid #010101;
+  }
+  input[type=range]::-moz-range-thumb {
+    box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+    border: 1px solid #000000;
+    height: 25px;
+    width: 10px;
+    border-radius: 9px;
+    background: #ffffff;
+    cursor: pointer;
+  }
+  input[type=range]::-ms-track {
+    width: 100%;
+    height: 8.4px;
+    cursor: pointer;
+    background: transparent;
+    border-color: transparent;
+    color: transparent;
+  }
+  input[type=range]::-ms-fill-lower {
+    background: #2a6495;
+    border: 0.2px solid #010101;
+    border-radius: 2.6px;
+    box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+  }
+  input[type=range]::-ms-fill-upper {
+    background: #3071a9;
+    border: 0.2px solid #010101;
+    border-radius: 2.6px;
+    box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+  }
+  input[type=range]::-ms-thumb {
+    box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+    border: 1px solid #000000;
+    height: 25px;
+    width: 10px;
+    border-radius: 9px;
+    background: #ffffff;
+    cursor: pointer;
+    height: 8.4px;
+  }
+  input[type=range]:focus::-ms-fill-lower {
+    background: #3071a9;
+  }
+  input[type=range]:focus::-ms-fill-upper {
+    background: #367ebd;
+  }
+  
 
 img:hover {
     margin-top: -5px;
@@ -227,10 +236,12 @@ img:hover {
 #period {
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
     margin: 10px 10px;
 }
 #period input {
     margin: 0 15px 0 5px;
+    width: 170px;
 }
 #fuelconsumption {
     position: absolute;
@@ -240,11 +251,38 @@ img:hover {
 #fuelconsumption div {
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
+    padding-left: 10px;
 }
 #refueling, #other-costs {
     display: flex;
     flex-direction: column;
     align-items: center;
     position: relative;
-    padding-top: 40px;
+}
+#refueling {    
+    padding-top: 60px;
+}
+
+@media (max-width: 475px) {
+    #period {
+        flex-direction: column;
+        align-content: center;
+    }
+    input, select {
+        width: 100px;
+    }
+    #selectcar {
+        margin-left: calc(50% - 50px);
+    }
+    #selectcar button img {
+        width: 20px;
+    }
+    #selectcar a img {
+        width: 20px;        
+    }
+    label {
+        flex-direction: column;
+        align-items: center;
+    }
 }
