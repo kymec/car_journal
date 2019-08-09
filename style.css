@@ -81,7 +81,9 @@ button:hover {
     cursor: pointer;
 }
 #categorylist {
-    display: block
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 #categorylist label {
     display: inline-block;
