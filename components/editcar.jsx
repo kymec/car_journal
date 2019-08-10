@@ -59,6 +59,7 @@ export default class EditCar extends React.Component {
     render() {
         return (
             <div id="editcar">
+                <h1>Изменение автомобиля</h1>
                 <InputText
                     type="text"
                     name="name" 
@@ -104,20 +105,10 @@ export default class EditCar extends React.Component {
                 />
                 <InputText 
                     type="number"
-                    min="49"
-                    max="20000"
-                    name="engine-volume" 
-                    text="Обьём двигателя автомобиля (куб.см.)" 
-                    placeholder="1800" 
-                    getState={(state) => {this.setState(state); this.checkInput(state)}}
-                    defaultValue={this.state ? this.state['engine-volume'] : ''}
-                />
-                <InputText 
-                    type="number"
                     min="3"
                     max="1000"
                     name="fuel-tank" 
-                    text="Обьём бака автомобиля (литров)" 
+                    text="Обьём бака" 
                     placeholder="43" 
                     getState={(state) => {this.setState(state); this.checkInput(state)}}
                     defaultValue={this.state ? this.state['fuel-tank'] : ''}
@@ -128,7 +119,6 @@ export default class EditCar extends React.Component {
                             name: this.state.name,
                             brand: this.state.brand,
                             model: this.state.model,
-                            'engine-volume': this.state['engine-volume'],
                             'fuel-tank': this.state['fuel-tank'],
                             year: this.state.year,
                             mileage: this.state.mileage,

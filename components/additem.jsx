@@ -86,6 +86,7 @@ export default class AddItem extends React.Component {
     render() {
         return (
             <div id="additem">
+                <h1>Добавление записи</h1>
                 <SelectCar 
                     car={this.props.cars}
                     remove={() => this.props.remove(this.state.current)}
@@ -95,17 +96,19 @@ export default class AddItem extends React.Component {
                         this.props.getcurrent(current);
                         }}
                     selected={this.state.current}
-                />                             
-                <InputRadio 
-                    name="type" 
-                    click={() => this.changeState('refueling')} 
-                    text="Заправка"
                 />
-                <InputRadio 
-                    name="type" 
-                    click={() => this.changeState('other-costs')} 
-                    text="Другие траты"
-                />
+                <div id="item-type">
+                    <InputRadio 
+                        name="type" 
+                        click={() => this.changeState('refueling')} 
+                        text="Заправка"
+                    />
+                    <InputRadio 
+                        name="type" 
+                        click={() => this.changeState('other-costs')} 
+                        text="Другие траты"
+                    />               
+                </div>
                 {this.chooseType()} 
                 <button 
                     onClick={() => {

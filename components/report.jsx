@@ -35,6 +35,7 @@ export default class Report extends React.Component {
     render() {
         return (
             <div>
+                <h1>Отчёты</h1>
                 <SelectCar 
                     car={this.props.cars}
                     remove={() => this.props.remove(this.state.current)}

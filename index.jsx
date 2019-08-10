@@ -10,6 +10,7 @@ import EditCar from './components/editcar';
 import AddItem from './components/additem';
 import Report from './components/report';
 import BeginPage from './components/beginpage';
+import Backup from './components/backup';
 import SelectCar from './components/selectcar';
 import { connect } from 'react-redux';
 import * as Constants from './actions';
@@ -107,6 +108,12 @@ class MainPage extends React.Component {
                                 edit={(car) => this.props.editcar(car)} 
                                 cars={this.props.cars}
                                 current={this.state.current}
+                            />}
+                    /> 
+                    <Route 
+                        path={`${PUBLIC_URL}/backup`}
+                        render={(props) => 
+                            <Backup {...props} 
                             />}
                     /> 
                 </Switch>
