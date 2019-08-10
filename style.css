@@ -36,6 +36,7 @@ label {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    justify-content: center;
 }
 .reportheadercols {
     font-weight: 700;
@@ -52,7 +53,7 @@ label {
     width: 80px
 }
 .reportList div:nth-child(3), .reportheadercols div:nth-child(3){
-    width: 70px
+    width: 55px
 }
 .reportList div:last-child, .reportheadercols div:last-child{
     width: 50px
@@ -90,7 +91,9 @@ button:hover {
     cursor: pointer;
 }
 #categorylist {
-    display: block
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 #categorylist label {
     display: inline-block;
@@ -133,6 +136,7 @@ button:hover {
 }
 #fuelconsumption {
     display: block;
+    margin: 0 5px;
 }
 .fuelconsumptionrow {
     display: flex;    
@@ -261,6 +265,22 @@ img:hover {
 #refueling {    
     padding-top: 60px;
 }
+#carlist {
+    margin: 10px auto;
+    width: 300px;
+}
+#carlist div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+#carlist button {
+    background: none;
+}
+#carlist div img {
+    width: 30px;
+}
+ 
 
 @media (max-width: 475px) {
     #period {
@@ -282,5 +302,11 @@ img:hover {
     label {
         flex-direction: column;
         align-items: center;
+    }
+}
+
+@media (max-width: 350px) {
+    #refueling {
+        padding-top: 80px;
     }
 }

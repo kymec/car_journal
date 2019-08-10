@@ -6,6 +6,12 @@ import imageRemove from '../images/icons/delete.png';
 export default class ShowItems extends React.Component{
     constructor(props) {
         super(props);
+        this.state = {
+            displayRef: 'none',
+            displayOth: 'none',
+        };
+        this.currenttank = props.currenttank;
+        this.hide = true;
         this.sumRef = 0;
         this.sumOth = 0;
         this.refQnt = 0;
@@ -24,7 +30,7 @@ export default class ShowItems extends React.Component{
         this.refDifference = 0;
         this.category={};
         this.error = "";
-        this.state = {...this.getCategoryList()};     
+        this.state.category = {...this.getCategoryList()};     
     }
     getCategoryList() {
         let obj = {};
@@ -58,24 +64,38 @@ export default class ShowItems extends React.Component{
                     this.refDifferenceBefore = obj['fuel-remain'];
 
                     return (
-                        <div className="reportList">
+                        <div 
+                            className="reportList"
+                            style={{display: this.state.displayRef}}
+                        >
                             <div>{obj.date}</div>
                             <div>{obj.mileage}</div>
                             <div>{obj.liters * obj['cost-per-liter']}</div>
                             <div>{obj['oil-station']}</div>
-                            <button onClick={() => this.props.removeItem(index)}><img alt="Удалить" src={imageRemove}/></button>
+                            <button onClick={() => {
+                                    if(confirm('Вы уверены что хотите удалить?')) {
+                                        this.props.removeItem(index);
+                                    }                                    
+                                }}><img alt="Удалить" src={imageRemove}/></button>
                         </div>
                     )
-                } else if (obj.type === 'other-costs' && this.state[obj.category]) {
+                } else if (obj.type === 'other-costs' && this.state.category[obj.category]) {
                     this.sumOth += +obj.cost;
                     return (
                         <div>
-                            <div className="reportList">
+                            <div 
+                                className="reportList"
+                                style={{display: this.state.displayOth}}
+                            >
                                 <div>{obj.date}</div>
                                 <div>{obj.mileage}</div>
-                                <div>{obj.category}</div>
                                 <div>{obj.cost}</div>
-                                <button onClick={() => this.props.removeItem(index)}><img alt="Удалить" src={imageRemove}/></button>
+                                <div>{obj.category}</div>
+                                <button onClick={() => {
+                                    if(confirm('Вы уверены что хотите удалить?')) {
+                                        this.props.removeItem(index);
+                                    }                                    
+                                }}><img alt="Удалить" src={imageRemove}/></button>
                             </div>
                         </div>
                         
@@ -117,7 +137,7 @@ export default class ShowItems extends React.Component{
             this.error = "";
             return (
                 <div>
-                    {Math.round((this.refBeforeLastLiters + this.refDifference) / (this.refLastMileage - this.refBeforeLastMileage) * 10000) / 100}
+                    {Math.round((this.refBeforeLastLiters + this.refDifference * this.props.currenttank / 100) / (this.refLastMileage - this.refBeforeLastMileage) * 10000) / 100}
                 </div>
             );            
         } else {
@@ -141,7 +161,10 @@ export default class ShowItems extends React.Component{
     reportHeaderCols() {
         if (this.props.filter.type === 'refueling'){
             return (
-            <div className="reportheadercols">
+            <div 
+                className="reportheadercols"
+                style={{display: this.state.displayRef}}
+            >
                 <div>Дата</div>
                 <div>Пробег</div>
                 <div>Сумма</div>
@@ -151,17 +174,37 @@ export default class ShowItems extends React.Component{
             )
         } else {
             return (
-            <div className="reportheadercols">
+            <div 
+                className="reportheadercols"
+                style={{display: this.state.displayOth}}
+            >
                 <div>Дата</div>
                 <div>Пробег</div>
-                <div>Тип</div>
                 <div>Сумма</div>
+                <div>Тип</div>
                 <div></div>
             </div>
             )
         }
     }
+    hideReport(type) {
+        if(type === 'refueling') {
+            if(this.state.displayRef === "none") {
+                this.setState({displayRef: "flex"});
+            } else {
+                this.setState({displayRef: "none"});
+            }
+        } else if(type === 'other-costs') {
+            if(this.state.displayOth === "none") {
+                this.setState({displayOth: "flex"});
+            } else {
+                this.setState({displayOth: "none"});
+            }
+        }
+        
+    }
     render() {
+        console.log('state', this.state);
         this.sumRef = 0;
         this.sumOth = 0;
         this.refQnt = 0;
@@ -178,13 +221,30 @@ export default class ShowItems extends React.Component{
         this.refBeforeLastMileage = 0;
         return (
             <div id={this.props.filter.type}>                
-                <div className="reportheader">{this.props.header}</div>
-                <div id="categorylist">
+                <div 
+                    className="reportheader"
+                    onClick={() => {
+                        if (this.props.filter.type === 'refueling') {
+                            this.hideReport('refueling');
+                        } else if(this.props.filter.type === 'other-costs') {
+                            this.hideReport('other-costs');
+                        }
+                        
+                    }}
+                >{this.props.header}</div>
+                <div 
+                    id="categorylist"
+                    style={{display: this.state.displayOth}}
+                >
                 {   this.props.filter.type === 'other-costs' ?                                     
                         categoryList.map((item) => (
                             <InputCategory 
                             key={item}
-                            click={() => (this.setState({[item]: !this.state[item]}))}
+                            click={() => {
+                                this.categoryBuffer = this.state.category;
+                                this.categoryBuffer[`${item}`] = !this.categoryBuffer[item];
+                                this.setState({category: this.categoryBuffer});
+                            }}
                             name={item}
                             />                
                         )) 
