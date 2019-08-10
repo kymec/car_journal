@@ -112,7 +112,7 @@ export default class ShowItems extends React.Component{
         if (this.props.filter.type === 'refueling') {
             return (
                 <div id="fuelconsumption">      
-                    <div className="fuelconsumptionrow">Расход за период {this.middleCons()} л/100км, {this.middleConsCost()} грн/100км</div>
+                    <div className="fuelconsumptionrow">Расход {this.middleCons()} л/100км, {this.middleConsCost()} грн/100км</div>
                     <div className="fuelconsumptionrow">Расход последний {this.middleConsLast()} л/100км</div>
                     <div className="error">{this.error}</div>
                 </div>

@@ -7,6 +7,14 @@ body {
     font-size: 16px;    
     background-color: #ffffff;
 }
+h1 {
+    text-align: center;
+    margin: 0 0;
+}
+h3 {
+    margin: 0 15px;
+    text-align: center;
+}
 #root {    
     margin: 0 auto;
     max-width: 600px;
@@ -20,17 +28,26 @@ body {
     display: flex;
     flex-direction: column;
     text-align: center;
+    margin-bottom: 50px;
+}
+#other-costs {
+    margin-bottom: 60px;
 }
 label {
     display: flex;
     justify-content: space-between;
-    margin: 10px 10px;
+    margin: 5px 5px 0 5px;
 }
 .radio {
     display: flex;
-    justify-content: space-between;
-    width: 200px;
-    margin: 10px auto;
+    flex-direction: column;
+    align-items: center;
+    width: 150px;
+}
+#item-type {
+    display: flex;
+    justify-content: center;
+
 }
 .reportList, .reportheadercols {
     display: flex;
@@ -58,11 +75,11 @@ label {
 .reportList div:last-child, .reportheadercols div:last-child{
     width: 50px
 }
-input[type="text"], input[type="number"], input[type="date"], select, input[type="range"] {
+input[type="text"], input[type="number"], input[type="date"], select, input[type="range"], input[type="password"] {
     border-radius: 8px;
     width: 200px;
     height: 30px;
-    border: 1px solid rgb(17, 0, 255);
+    border: 1px solid #1100ff;
     box-sizing:border-box;
     color: #000000;
     background-color: #ffffff;
@@ -71,7 +88,7 @@ input[type="text"], input[type="number"], input[type="date"], select, input[type
 }
 button {
     font-size: 16px;
-    background-color: rgb(17, 0, 255);
+    background-color: #1100ff;
     color: #ffffff;    
     border: none;
     border-radius: 8px;
@@ -80,7 +97,16 @@ button {
     width: 200px;
     height: 40px;
     margin: 10px auto;
-    
+}
+#backup button {
+    width: 100px;
+    height: 40px;
+    margin: 10px 10px;
+}
+#backup div {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 button:disabled,
 button[disabled] {
@@ -107,6 +133,7 @@ button:hover {
 }
 #selectcar {
     display: flex;
+    align-items: center;
     height: 30px;
     margin-left: calc(50% - 100px);
 }
@@ -128,15 +155,17 @@ button:hover {
 }
 #menu img{
     height: 40px;
-    margin: 0 15px;
+    margin: 0 5px;
 }
 .error {
     color: red;
-    height: 25px;
 }
-#fuelconsumption {
+#fuelconsumption {    
     display: block;
-    margin: 0 5px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
 }
 .fuelconsumptionrow {
     display: flex;    
@@ -238,18 +267,12 @@ img:hover {
 #period {
     display: flex;
     justify-content: center;
-    flex-wrap: wrap;
     margin: 10px 10px;
 }
 #period input {
     margin: 0 15px 0 5px;
-    width: 170px;
-}
-#fuelconsumption {
-    position: absolute;
-    top: 0;
-    left: calc(50% - 182px);    
-}
+    max-width: 200px;
+}  
 #fuelconsumption div {
     display: flex;
     justify-content: center;
@@ -273,6 +296,7 @@ img:hover {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    font-size: 20px;
 }
 #carlist button {
     background: none;
@@ -280,19 +304,128 @@ img:hover {
 #carlist div img {
     width: 30px;
 }
+#menu {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+
+
+
+/* Customize the label (the container) */
+.container {
+    position: relative;
+    margin-bottom: 12px;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  
+  /* Hide the browser's default checkbox */
+  .container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+  }
+  
+  /* Create a custom checkbox */
+  .checkmark {
+    position: absolute;
+    top: 0;
+    left: calc(50% - 7.5px);
+    height: 15px;
+    width: 15px;
+    background-color: #eee;
+  }
+  
+  /* On mouse-over, add a grey background color */
+  .container:hover input ~ .checkmark {
+    background-color: #ccc;
+  }
+  
+  /* When the checkbox is checked, add a blue background */
+  .container input:checked ~ .checkmark {
+    background-color: #1100ff;
+  }
+  
+  /* Create the checkmark/indicator (hidden when not checked) */
+  .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+  
+  /* Show the checkmark when checked */
+  .container input:checked ~ .checkmark:after {
+    display: block;
+  }
+  
+  /* Style the checkmark/indicator */
+  .container .checkmark:after {
+    left: 5px;
+    top: 3px;
+    width: 3px;
+    height: 5px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }
+  
+  
+  /* Create a custom radio button */
+  .checkmarkradio {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 16px;
+    width: 16px;
+    background-color: #eee;
+    border-radius: 50%;
+    border: 1px solid #1100ff;
+  }
+  
+  /* On mouse-over, add a grey background color */
+  .container:hover input ~ .checkmarkradio {
+    background-color: #ccc;
+  }
+  
+  /* When the radio button is checked, add a blue background */
+  .container input:checked ~ .checkmarkradio {
+    background-color: #1100ff;
+  }
+  
+  /* Create the indicator (the dot/circle - hidden when not checked) */
+  .checkmarkradio:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+  
+  /* Show the indicator (dot/circle) when checked */
+  .container input:checked ~ .checkmarkradio:after {
+    display: block;
+  }
+  
+  /* Style the indicator (dot/circle) */
+  .container .checkmarkradio:after {
+    top: 4px;
+    left: 4px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: white;
+  }
  
 
 @media (max-width: 475px) {
-    #period {
-        flex-direction: column;
-        align-content: center;
-    }
-    input, select {
-        width: 100px;
-    }
-    #selectcar {
-        margin-left: calc(50% - 50px);
-    }
     #selectcar button img {
         width: 20px;
     }
@@ -306,7 +439,8 @@ img:hover {
 }
 
 @media (max-width: 350px) {
-    #refueling {
-        padding-top: 80px;
+    #period {
+        flex-direction: column;
+        align-items: center;
     }
 }

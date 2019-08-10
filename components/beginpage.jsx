@@ -21,7 +21,8 @@ export default class BeginPage extends React.Component {
     render() {
         return (
             <div>
-                
+                <h1>Добро пожаловать</h1>
+                <h3>Выберите авто для добавления данных</h3>
                 {/*<SelectCar 
                     car={this.props.cars}
                     remove={() => this.props.remove(this.state.current)}

@@ -5,6 +5,7 @@ import imageMain from '../images/icons/home.png';
 import imageAddCar from '../images/icons/addcar.png';
 import imageAddItem from '../images/icons/additem.png';
 import imageReport from '../images/icons/report.png';
+import imageBackup from '../images/icons/backup.png';
 
 export default class Choose extends React.Component {
     render() {
@@ -18,6 +19,7 @@ export default class Choose extends React.Component {
                     <NavLink activeStyle={activeStyle} to={`${PUBLIC_URL}/addcar`}><img alt="Добавить авто" src={imageAddCar}/></NavLink>
                     <NavLink activeStyle={activeStyle} to={`${PUBLIC_URL}/additem`}><img alt="Добавить запись" src={imageAddItem}/></NavLink>
                     <NavLink activeStyle={activeStyle} to={`${PUBLIC_URL}/report`}><img alt="Отчёт" src={imageReport}/></NavLink>
+                    <NavLink activeStyle={activeStyle} to={`${PUBLIC_URL}/backup`}><img alt="Резервная копия" src={imageBackup}/></NavLink>
                 </nav>
             </div>
         );

@@ -34,7 +34,6 @@ export default class AddCar extends React.Component {
             this.inputvalue.model &&
             this.inputvalue.year &&
             this.inputvalue.mileage &&
-            this.inputvalue['engine-volume'] &&
             this.inputvalue['fuel-tank'] &&
             this.inputvalue.error === ''
         ) {
@@ -47,6 +46,7 @@ export default class AddCar extends React.Component {
     render() {
         return (
             <div id="addcar">
+                <h1>Добавление автомобиля</h1>
                 <div className="error">{this.state.error}</div>
                 <InputText
                     type="text"
@@ -93,20 +93,10 @@ export default class AddCar extends React.Component {
                 />
                 <InputText 
                     type="number"
-                    min="49"
-                    max="20000"
-                    name="engine-volume" 
-                    text="Обьём двигателя автомобиля (куб.см.)" 
-                    placeholder="1800" 
-                    getState={(state) => {this.setState(state); this.checkInput(state)}}
-                    defaultValue={this.state['engine-volume'] || 0}
-                />
-                <InputText 
-                    type="number"
                     min="3"
                     max="1000"
                     name="fuel-tank" 
-                    text="Обьём бака автомобиля (литров)" 
+                    text="Обьём бака" 
                     placeholder="50" 
                     getState={(state) => {this.setState(state); this.checkInput(state)}}
                     defaultValue={this.state['fuel-tank']}
@@ -117,7 +107,6 @@ export default class AddCar extends React.Component {
                             name: this.state.name,
                             brand: this.state.brand,
                             model: this.state.model,
-                            'engine-volume': this.state['engine-volume'],
                             'fuel-tank': this.state['fuel-tank'],
                             year: this.state.year,
                             mileage: this.state.mileage,
@@ -125,7 +114,7 @@ export default class AddCar extends React.Component {
                         this.props.history.push(PUBLIC_URL);
                     }}
                     disabled={this.state.buttonState}
-                >Сохранить</button>
+                >Сохранить</button>                
             </div>
         );
     }

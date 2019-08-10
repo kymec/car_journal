@@ -9,14 +9,15 @@ export default class InputCategory extends React.Component{
     }
     render() {
         return (
-            <label>
+            <label className="container">
                 <input 
                     onChange={this.props.click} 
                     type="checkbox" 
                     name={this.props.name}
                     defaultChecked
                 /><br/>
-                {this.props.name} 
+                {this.props.name}
+                <span className="checkmark"></span>
             </label>      
         );
     }
