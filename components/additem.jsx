@@ -110,7 +110,7 @@ export default class AddItem extends React.Component {
                 <button 
                     onClick={() => {
                         this.props.add(this.filterState(this.state)); 
-                        location.href = PUBLIC_URL;
+                        this.props.history.push(PUBLIC_URL);
                     }}
                     disabled={this.state.buttonState1 && this.state.buttonState2}
                 >Сохранить</button>

@@ -122,7 +122,7 @@ export default class AddCar extends React.Component {
                             year: this.state.year,
                             mileage: this.state.mileage,
                         });
-                        location.href = PUBLIC_URL;
+                        this.props.history.push(PUBLIC_URL);
                     }}
                     disabled={this.state.buttonState}
                 >Сохранить</button>

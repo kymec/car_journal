@@ -9,6 +9,7 @@ import AddCar from './components/addcar';
 import EditCar from './components/editcar';
 import AddItem from './components/additem';
 import Report from './components/report';
+import BeginPage from './components/beginpage';
 import SelectCar from './components/selectcar';
 import { connect } from 'react-redux';
 import * as Constants from './actions';
@@ -54,14 +55,14 @@ class MainPage extends React.Component {
                         exact
                         path={`${PUBLIC_URL}/`} 
                         render={(props) => 
-                            <SelectCar {...props}
-                                car={this.props.cars}
-                                remove={() => this.props.remove(this.state.current)}
-                                current={(current) => {                      
-                                        this.setState({current: current});
-                                    }}
-                                selected={this.state.current}
-                        /> }
+                            <BeginPage {...props} 
+                                cars={this.props.cars}
+                                remove={(car) => this.props.remove(car)}
+                                setcurrent={this.state.current}
+                                getcurrent={(current) => {                      
+                                    this.setState({current: current});
+                                }}
+                            />}
                     />
                     <Route 
                         path={`${PUBLIC_URL}/addcar`}

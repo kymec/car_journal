@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "parcel ./index.html",
     "build": "rm -rf dist && parcel build ./index.html --public-url /car_journal",
-    "deploy": "gh-pages -d dist"
+    "deploy": "cp ./dist/index.html ./dist/404.html && gh-pages -d dist"
   },
   "repository": {
     "type": "git",
