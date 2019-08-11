@@ -3,7 +3,7 @@ import {PUBLIC_URL} from '../constants';
 import {NavLink} from 'react-router-dom';
 import imageEdit from '../images/icons/edit.png';
 import imageRemove from '../images/icons/delete.png';
-import imageAdd from '../images/icons/add.png';
+import imageAdd from '../images/icons/additem.png';
 
 export default class CarList extends React.Component {
     constructor(props) {
