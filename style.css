@@ -1,11 +1,12 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,700&display=swap');
 
 body {    
-    background: no-repeat url('./images/icons/tyre.png');
-    background-position: 50% 0;
+    background: url('./images/icons/tyre.jpg');
+    background-size: auto;
     font-family: Open Sans;
     font-size: 16px;    
-    background-color: #ffffff;
+    background-color: #000000;
+    color: #ffffff;
 }
 h1 {
     text-align: center;
@@ -85,8 +86,8 @@ input[type="text"], input[type="number"], input[type="date"], select, input[type
     height: 30px;
     border: 1px solid #1100ff;
     box-sizing:border-box;
-    color: #000000;
-    background-color: #ffffff;
+    color: #ffffff;
+    background-color: #000000;
     padding: 0 10px 0 10px;
     font-size: 16px;
 }
@@ -267,10 +268,10 @@ input[type=range] {
 #period {
     display: flex;
     justify-content: center;
-    margin: 10px 10px;
+    margin: 10px 0;
 }
 #period input {
-    margin: 0 15px 0 5px;
+    margin: 0 5px 0 5px;
     max-width: 200px;
 }  
 #fuelconsumption div {
