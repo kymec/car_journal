@@ -5,7 +5,7 @@ body {
     background-size: auto;
     font-family: Open Sans;
     font-size: 16px;    
-    background-color: #ffffff;
+    background-color: #000000;
     color: #ffffff;
 }
 h1 {
@@ -268,10 +268,10 @@ input[type=range] {
 #period {
     display: flex;
     justify-content: center;
-    margin: 10px 10px;
+    margin: 10px 0;
 }
 #period input {
-    margin: 0 15px 0 5px;
+    margin: 0 5px 0 5px;
     max-width: 200px;
 }  
 #fuelconsumption div {
