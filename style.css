@@ -276,9 +276,6 @@ input[type=range] {
     padding-right: 0;
     padding-left: 3px;
 }
-#period input:first-child {
-    margin-right: 5px;
-}
 #fuelconsumption div {
     display: flex;
     justify-content: center;
