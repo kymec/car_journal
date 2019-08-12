@@ -25,7 +25,7 @@ export default class InputText extends React.Component{
     render() {
         return (
             <label>
-                {this.props.text}
+                {this.props.type === 'range' ? this.props.text+this.state.value+'%' : this.props.text}
                 <input 
                     type={this.props.type} 
                     min={this.props.min}
