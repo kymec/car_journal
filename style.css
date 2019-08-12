@@ -6,6 +6,7 @@ body {
     font-family: Open Sans;
     font-size: 16px;    
     background-color: #ffffff;
+    color: #ffffff;
 }
 h1 {
     text-align: center;
@@ -85,8 +86,8 @@ input[type="text"], input[type="number"], input[type="date"], select, input[type
     height: 30px;
     border: 1px solid #1100ff;
     box-sizing:border-box;
-    color: #000000;
-    background-color: #ffffff;
+    color: #ffffff;
+    background-color: #000000;
     padding: 0 10px 0 10px;
     font-size: 16px;
 }
