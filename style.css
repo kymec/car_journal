@@ -277,9 +277,11 @@ input[type=range] {
     margin: 10px 0;
 }
 #period input {
-    margin: 0 5px 0 5px;
-    max-width: 200px;
-}  
+    margin: 0 0;
+    max-width: 200px;    
+    padding-right: 0;
+    padding-left: 3px;
+}
 #fuelconsumption div {
     display: flex;
     justify-content: center;

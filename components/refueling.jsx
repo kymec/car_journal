@@ -46,7 +46,7 @@ export default class Refueling extends React.Component {
                 <InputText 
                     type="range" 
                     list="fuel-remain"
-                    text="Остаток топлива в баке (%)"  
+                    text="Остаток топлива в баке "  
                     name="fuel-remain" 
                     getState={(state) => {this.props.getState(state)}} 
                     defaultValue='0'
