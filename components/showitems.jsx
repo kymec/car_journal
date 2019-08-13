@@ -207,8 +207,7 @@ export default class ShowItems extends React.Component{
             } else {
                 this.setState({displayOth: "none"});
             }
-        }
-        
+        }        
     }
     render() {
         console.log('state', this.state);
@@ -238,7 +237,11 @@ export default class ShowItems extends React.Component{
                         }
                         
                     }}
-                >{this.props.header}<img alt="Удалить" src={imageArrow}/></div>
+                >{this.props.header}<img 
+                    alt="Удалить" 
+                    src={imageArrow} 
+                    style={{'transform': (this.state.displayOth === 'none' && this.state.displayRef === 'none') ? "rotate(0deg)" : "rotate(180deg)"}}
+                /></div>
                 <div 
                     id="categorylist"
                     style={{display: this.state.displayOth}}
