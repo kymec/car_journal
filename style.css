@@ -188,6 +188,7 @@ button:hover {
 }
 .reportheader img {
   width: 20px;
+  height: 20px;
 }
 
 input[type=range] {
