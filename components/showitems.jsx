@@ -68,15 +68,18 @@ export default class ShowItems extends React.Component{
                             className="reportList"
                             style={{display: this.state.displayRef}}
                         >
-                            <div>{obj.date}</div>
-                            <div>{obj.mileage}</div>
-                            <div>{obj.liters * obj['cost-per-liter']}</div>
-                            <div>{obj['oil-station']}</div>
-                            <button onClick={() => {
-                                    if(confirm('Вы уверены что хотите удалить?')) {
-                                        this.props.removeItem(index);
-                                    }                                    
-                                }}><img alt="Удалить" src={imageRemove}/></button>
+                            <div className="reportListRow">
+                                <div>{obj.date}</div>
+                                <div>{obj.mileage}</div>
+                                <div>{obj.liters * obj['cost-per-liter']}</div>
+                                <div>{obj['oil-station']}</div>
+                                <button onClick={() => {
+                                        if(confirm('Вы уверены что хотите удалить?')) {
+                                            this.props.removeItem(index);
+                                        }                                    
+                                    }}><img alt="Удалить" src={imageRemove}/></button>
+                            </div>
+                            <div>{obj.comment}</div>
                         </div>
                     )
                 } else if (obj.type === 'other-costs' && this.state.category[obj.category]) {
@@ -87,15 +90,18 @@ export default class ShowItems extends React.Component{
                                 className="reportList"
                                 style={{display: this.state.displayOth}}
                             >
-                                <div>{obj.date}</div>
-                                <div>{obj.mileage}</div>
-                                <div>{obj.cost}</div>
-                                <div>{obj.category}</div>
-                                <button onClick={() => {
-                                    if(confirm('Вы уверены что хотите удалить?')) {
-                                        this.props.removeItem(index);
-                                    }                                    
-                                }}><img alt="Удалить" src={imageRemove}/></button>
+                                <div className="reportListRow">
+                                    <div>{obj.date}</div>
+                                    <div>{obj.mileage}</div>
+                                    <div>{obj.cost}</div>
+                                    <div>{obj.category}</div>
+                                    <button onClick={() => {
+                                        if(confirm('Вы уверены что хотите удалить?')) {
+                                            this.props.removeItem(index);
+                                        }                                    
+                                    }}><img alt="Удалить" src={imageRemove}/></button>
+                                </div>
+                                <div>{obj.comment}</div>
                             </div>
                         </div>
                         
