@@ -210,7 +210,6 @@ export default class ShowItems extends React.Component{
         }        
     }
     render() {
-        console.log('state', this.state);
         this.sumRef = 0;
         this.sumOth = 0;
         this.refQnt = 0;
