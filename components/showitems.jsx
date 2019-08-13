@@ -2,6 +2,7 @@ import React from 'react';
 import InputCategory from '../components/inputcategory';
 import categoryList from '../categorylist';
 import imageRemove from '../images/icons/delete.png';
+import imageArrow from '../images/icons/arrow.png';
 
 export default class ShowItems extends React.Component{
     constructor(props) {
@@ -68,15 +69,18 @@ export default class ShowItems extends React.Component{
                             className="reportList"
                             style={{display: this.state.displayRef}}
                         >
-                            <div>{obj.date}</div>
-                            <div>{obj.mileage}</div>
-                            <div>{obj.liters * obj['cost-per-liter']}</div>
-                            <div>{obj['oil-station']}</div>
-                            <button onClick={() => {
-                                    if(confirm('Вы уверены что хотите удалить?')) {
-                                        this.props.removeItem(index);
-                                    }                                    
-                                }}><img alt="Удалить" src={imageRemove}/></button>
+                            <div className="reportListRow">
+                                <div>{obj.date}</div>
+                                <div>{obj.mileage}</div>
+                                <div>{obj.liters * obj['cost-per-liter']}</div>
+                                <div>{obj['oil-station']}</div>
+                                <button onClick={() => {
+                                        if(confirm('Вы уверены что хотите удалить?')) {
+                                            this.props.removeItem(index);
+                                        }                                    
+                                    }}><img alt="Удалить" src={imageRemove}/></button>
+                            </div>
+                            <div>{obj.comment}</div>
                         </div>
                     )
                 } else if (obj.type === 'other-costs' && this.state.category[obj.category]) {
@@ -87,15 +91,18 @@ export default class ShowItems extends React.Component{
                                 className="reportList"
                                 style={{display: this.state.displayOth}}
                             >
-                                <div>{obj.date}</div>
-                                <div>{obj.mileage}</div>
-                                <div>{obj.cost}</div>
-                                <div>{obj.category}</div>
-                                <button onClick={() => {
-                                    if(confirm('Вы уверены что хотите удалить?')) {
-                                        this.props.removeItem(index);
-                                    }                                    
-                                }}><img alt="Удалить" src={imageRemove}/></button>
+                                <div className="reportListRow">
+                                    <div>{obj.date}</div>
+                                    <div>{obj.mileage}</div>
+                                    <div>{obj.cost}</div>
+                                    <div>{obj.category}</div>
+                                    <button onClick={() => {
+                                        if(confirm('Вы уверены что хотите удалить?')) {
+                                            this.props.removeItem(index);
+                                        }                                    
+                                    }}><img alt="Удалить" src={imageRemove}/></button>
+                                </div>
+                                <div>{obj.comment}</div>
                             </div>
                         </div>
                         
@@ -200,8 +207,7 @@ export default class ShowItems extends React.Component{
             } else {
                 this.setState({displayOth: "none"});
             }
-        }
-        
+        }        
     }
     render() {
         console.log('state', this.state);
@@ -231,7 +237,11 @@ export default class ShowItems extends React.Component{
                         }
                         
                     }}
-                >{this.props.header}</div>
+                >{this.props.header}<img 
+                    alt="Удалить" 
+                    src={imageArrow} 
+                    style={{'transform': (this.state.displayOth === 'none' && this.state.displayRef === 'none') ? "rotate(0deg)" : "rotate(180deg)"}}
+                /></div>
                 <div 
                     id="categorylist"
                     style={{display: this.state.displayOth}}
