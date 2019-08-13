@@ -182,8 +182,12 @@ button:hover {
     display: flex;    
 }
 .reportheader {
-    font-weight: 700;
-    margin-top: 10px;
+  display: flex;  
+  font-weight: 700;
+    margin-top: 10px;    
+}
+.reportheader img {
+  width: 20px;
 }
 
 input[type=range] {

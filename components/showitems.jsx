@@ -2,6 +2,7 @@ import React from 'react';
 import InputCategory from '../components/inputcategory';
 import categoryList from '../categorylist';
 import imageRemove from '../images/icons/delete.png';
+import imageArrow from '../images/icons/arrow.png';
 
 export default class ShowItems extends React.Component{
     constructor(props) {
@@ -237,7 +238,7 @@ export default class ShowItems extends React.Component{
                         }
                         
                     }}
-                >{this.props.header}</div>
+                >{this.props.header}<img alt="Удалить" src={imageArrow}/></div>
                 <div 
                     id="categorylist"
                     style={{display: this.state.displayOth}}
